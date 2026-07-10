@@ -7,9 +7,40 @@
   </head>
   <body>
     <main class="container py-5 app-page">
-      <h1>Къмпинги</h1>
-      <p>Тук ще бъде каталогът с публикувани къмпинги.</p>
-      <a href="/index.html" class="btn btn-outline-success">Към началото</a>
+      <section class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+        <div>
+          <h1 class="mb-2">Къмпинги</h1>
+          <p class="text-muted mb-0">Разгледайте публикувани места за къмпинг от общността на CampAtlas.</p>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+          <a id="createCampsiteLink" href="/create-campsite.html" class="btn btn-success d-none">
+            <i class="bi bi-plus-circle me-1"></i>Добави къмпинг
+          </a>
+
+          <div id="guestAuthActions" class="d-flex flex-wrap gap-2">
+            <a href="/login.html" class="btn btn-outline-success">Вход</a>
+            <a href="/register.html" class="btn btn-success">Регистрация</a>
+          </div>
+        </div>
+      </section>
+
+      <div id="campsitesLoading" class="alert alert-info" role="status">
+        <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+        Зареждане на публикуваните къмпинги...
+      </div>
+
+      <div id="campsitesError" class="alert alert-danger d-none" role="alert"></div>
+
+      <div id="campsitesEmpty" class="alert alert-secondary d-none" role="status">
+        Все още няма публикувани къмпинги.
+      </div>
+
+      <section id="campsitesGrid" class="row g-4 d-none" aria-live="polite"></section>
+
+      <div class="mt-4">
+        <a href="/index.html" class="btn btn-outline-success">Към началото</a>
+      </div>
     </main>
     <script type="module" src="/src/pages/campsites.page.js"></script>
   </body>
