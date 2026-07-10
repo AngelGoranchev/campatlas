@@ -7,9 +7,106 @@
   </head>
   <body>
     <main class="container py-5 app-page">
-      <h1>Детайли за къмпинг</h1>
-      <p>Тук ще бъдат описанието, снимките, локацията, плюсовете и минусите.</p>
-      <a href="/campsites.html" class="btn btn-outline-success">Назад към къмпингите</a>
+      <section class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+        <div>
+          <h1 class="mb-2">Детайли за къмпинг</h1>
+          <p class="text-muted mb-0">Пълна информация, снимки, любими и отзиви от посетители.</p>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+          <a href="/campsites.html" class="btn btn-outline-success">Към всички къмпинги</a>
+          <a href="/index.html" class="btn btn-outline-secondary">Към началото</a>
+        </div>
+      </section>
+
+      <div id="campsiteDetailsLoading" class="alert alert-info" role="status">
+        <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+        Зареждане на детайли за къмпинга...
+      </div>
+
+      <div id="campsiteDetailsError" class="alert alert-danger d-none" role="alert"></div>
+
+      <section id="campsiteDetailsContent" class="d-none" aria-live="polite">
+        <article class="card border-0 shadow-sm mb-4">
+          <div class="card-body p-4">
+            <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-3">
+              <div>
+                <h2 id="campsiteTitle" class="h3 mb-2"></h2>
+                <p id="campsiteLocation" class="text-muted mb-0"></p>
+              </div>
+
+              <button id="favoriteButton" type="button" class="btn btn-outline-danger d-none"></button>
+            </div>
+
+            <p id="campsiteDescription" class="mb-3"></p>
+
+            <p id="campsitePrice" class="fw-semibold mb-3"></p>
+
+            <section class="mb-4">
+              <h3 class="h5 mb-2">Удобства</h3>
+              <div id="campsiteAmenities" class="d-flex flex-wrap gap-2"></div>
+            </section>
+
+            <section id="positiveNotesSection" class="mb-3 d-none">
+              <h3 class="h6 text-success">Положителни бележки</h3>
+              <p id="campsitePositiveNotes" class="mb-0"></p>
+            </section>
+
+            <section id="negativeNotesSection" class="mb-0 d-none">
+              <h3 class="h6 text-danger">Отрицателни бележки</h3>
+              <p id="campsiteNegativeNotes" class="mb-0"></p>
+            </section>
+          </div>
+        </article>
+
+        <section class="card border-0 shadow-sm mb-4">
+          <div class="card-body p-4">
+            <h3 class="h5 mb-3">Галерия</h3>
+            <div id="campsiteGallery" class="row g-3"></div>
+          </div>
+        </section>
+
+        <section class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <h3 class="h5 mb-3">Отзиви</h3>
+
+            <div id="reviewsAuthMessage" class="alert alert-secondary d-none mb-3"></div>
+            <div id="reviewFeedback" class="alert d-none mb-3" role="alert"></div>
+
+            <form id="reviewForm" class="d-none mb-4" novalidate>
+              <div class="mb-3">
+                <label for="reviewRating" class="form-label">Оценка</label>
+                <select id="reviewRating" class="form-select" required>
+                  <option value="">Изберете оценка</option>
+                  <option value="5">5 - Отлично</option>
+                  <option value="4">4 - Много добро</option>
+                  <option value="3">3 - Добро</option>
+                  <option value="2">2 - Слабо</option>
+                  <option value="1">1 - Лошо</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="reviewComment" class="form-label">Коментар</label>
+                <textarea
+                  id="reviewComment"
+                  class="form-control"
+                  rows="4"
+                  maxlength="1000"
+                  placeholder="Споделете впечатленията си от този къмпинг"
+                ></textarea>
+              </div>
+
+              <button id="reviewSubmitButton" type="submit" class="btn btn-success">
+                Изпрати отзив
+              </button>
+            </form>
+
+            <div id="reviewsEmpty" class="alert alert-secondary d-none" role="status"></div>
+            <div id="reviewsList" class="d-grid gap-3"></div>
+          </div>
+        </section>
+      </section>
     </main>
     <script type="module" src="/src/pages/campsite-details.page.js"></script>
   </body>
