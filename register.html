@@ -7,9 +7,84 @@
   </head>
   <body>
     <main class="container py-5 app-page">
-      <h1>Регистрация</h1>
-      <p>Тук ще бъде формата за регистрация.</p>
-      <a href="/index.html" class="btn btn-outline-success">Към началото</a>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-9 col-lg-6">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+              <h1 class="h3 mb-3">Регистрация</h1>
+              <p class="text-muted mb-4">Създайте профил, за да добавяте и пазите любими къмпинги.</p>
+
+              <div id="registerMessage" class="alert d-none" role="alert" aria-live="polite"></div>
+
+              <form id="registerForm" class="needs-validation" novalidate>
+                <div class="mb-3">
+                  <label for="registerFullName" class="form-label">Име и фамилия</label>
+                  <input
+                    id="registerFullName"
+                    name="full_name"
+                    type="text"
+                    class="form-control"
+                    autocomplete="name"
+                    minlength="2"
+                    required
+                  />
+                  <div class="invalid-feedback">Моля, въведете име и фамилия.</div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="registerEmail" class="form-label">Имейл</label>
+                  <input
+                    id="registerEmail"
+                    name="email"
+                    type="email"
+                    class="form-control"
+                    autocomplete="email"
+                    required
+                  />
+                  <div class="invalid-feedback">Моля, въведете валиден имейл.</div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="registerPassword" class="form-label">Парола</label>
+                  <input
+                    id="registerPassword"
+                    name="password"
+                    type="password"
+                    class="form-control"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                  />
+                  <div class="invalid-feedback">Паролата трябва да бъде поне 6 символа.</div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="registerPasswordConfirm" class="form-label">Потвърдете парола</label>
+                  <input
+                    id="registerPasswordConfirm"
+                    name="password_confirm"
+                    type="password"
+                    class="form-control"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                  />
+                  <div class="invalid-feedback">Паролите трябва да съвпадат.</div>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">
+                  <i class="bi bi-person-plus me-2"></i>Регистрация
+                </button>
+              </form>
+
+              <div class="d-flex justify-content-between align-items-center mt-4 gap-2">
+                <a href="/login.html" class="btn btn-outline-success btn-sm">Вече имате профил?</a>
+                <a href="/index.html" class="btn btn-link btn-sm text-success px-0">Към началото</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <script type="module" src="/src/pages/register.page.js"></script>
   </body>
