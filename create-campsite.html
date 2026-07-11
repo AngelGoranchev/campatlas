@@ -7,9 +7,139 @@
   </head>
   <body>
     <main class="container py-5 app-page">
-      <h1>Добави къмпинг</h1>
-      <p>Тук ще бъде формата за създаване на нов къмпинг.</p>
-      <a href="/index.html" class="btn btn-outline-success">Към началото</a>
+      <section class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+        <div>
+          <h1 class="mb-2">Добави къмпинг</h1>
+          <p class="text-muted mb-0">Попълнете информация за новото място за къмпинг.</p>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+          <a href="/campsites.html" class="btn btn-outline-success">Към къмпингите</a>
+          <a href="/index.html" class="btn btn-outline-secondary">Към началото</a>
+        </div>
+      </section>
+
+      <div id="createCampsiteMessage" class="alert d-none" role="alert"></div>
+
+      <section class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <form id="createCampsiteForm" class="row g-3" novalidate>
+            <div class="col-12">
+              <label for="title" class="form-label">Заглавие</label>
+              <input id="title" name="title" type="text" class="form-control" maxlength="120" required />
+            </div>
+
+            <div class="col-12">
+              <label for="description" class="form-label">Описание</label>
+              <textarea
+                id="description"
+                name="description"
+                class="form-control"
+                rows="5"
+                maxlength="5000"
+                required
+              ></textarea>
+            </div>
+
+            <div class="col-12 col-lg-6">
+              <label for="locationName" class="form-label">Локация</label>
+              <input id="locationName" name="location_name" type="text" class="form-control" maxlength="200" required />
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <label for="latitude" class="form-label">Географска ширина</label>
+              <input id="latitude" name="latitude" type="number" class="form-control" step="0.0000001" min="-90" max="90" />
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <label for="longitude" class="form-label">Географска дължина</label>
+              <input id="longitude" name="longitude" type="number" class="form-control" step="0.0000001" min="-180" max="180" />
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <label for="pricePerNight" class="form-label">Цена на нощувка (лв.)</label>
+              <input
+                id="pricePerNight"
+                name="price_per_night"
+                type="number"
+                class="form-control"
+                step="0.01"
+                min="0"
+              />
+            </div>
+
+            <div class="col-12">
+              <h2 class="h6 mb-2">Удобства</h2>
+              <div class="row g-2">
+                <div class="col-6 col-md-4 col-lg-2">
+                  <div class="form-check">
+                    <input id="hasWater" name="has_water" type="checkbox" class="form-check-input" />
+                    <label for="hasWater" class="form-check-label">Вода</label>
+                  </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2">
+                  <div class="form-check">
+                    <input id="hasElectricity" name="has_electricity" type="checkbox" class="form-check-input" />
+                    <label for="hasElectricity" class="form-check-label">Ток</label>
+                  </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2">
+                  <div class="form-check">
+                    <input id="hasToilet" name="has_toilet" type="checkbox" class="form-check-input" />
+                    <label for="hasToilet" class="form-check-label">Тоалетна</label>
+                  </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2">
+                  <div class="form-check">
+                    <input id="hasShower" name="has_shower" type="checkbox" class="form-check-input" />
+                    <label for="hasShower" class="form-check-label">Душ</label>
+                  </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2">
+                  <div class="form-check">
+                    <input id="hasWifi" name="has_wifi" type="checkbox" class="form-check-input" />
+                    <label for="hasWifi" class="form-check-label">Wi-Fi</label>
+                  </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2">
+                  <div class="form-check">
+                    <input id="petsAllowed" name="pets_allowed" type="checkbox" class="form-check-input" />
+                    <label for="petsAllowed" class="form-check-label">Домашни любимци</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+              <label for="positiveNotes" class="form-label">Положителни бележки</label>
+              <textarea id="positiveNotes" name="positive_notes" class="form-control" rows="4" maxlength="2000"></textarea>
+            </div>
+
+            <div class="col-12 col-lg-6">
+              <label for="negativeNotes" class="form-label">Отрицателни бележки</label>
+              <textarea id="negativeNotes" name="negative_notes" class="form-control" rows="4" maxlength="2000"></textarea>
+            </div>
+
+            <div class="col-12">
+              <label for="photos" class="form-label">Снимки</label>
+              <input id="photos" name="photos" type="file" class="form-control" accept="image/*" multiple />
+              <div class="form-text">Можете да качите няколко изображения едновременно.</div>
+            </div>
+
+            <div class="col-12 d-flex flex-wrap align-items-center gap-3 pt-2">
+              <button id="createCampsiteSubmit" type="submit" class="btn btn-success">
+                <i class="bi bi-check2-circle me-1"></i>Създай къмпинг
+              </button>
+              <span class="text-muted small">Новите къмпинги се публикуват след одобрение от администратор.</span>
+            </div>
+          </form>
+        </div>
+      </section>
     </main>
     <script type="module" src="/src/pages/create-campsite.page.js"></script>
   </body>
