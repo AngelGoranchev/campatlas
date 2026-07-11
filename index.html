@@ -43,21 +43,25 @@
             </li>
 
             <li class="nav-item">
-              <a
-                href="/login.html"
+              <button
+                type="button"
                 class="btn btn-outline-light btn-sm"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
               >
                 <i class="bi bi-box-arrow-in-right me-1"></i> Вход
-              </a>
+              </button>
             </li>
 
             <li class="nav-item">
-              <a
-                href="/register.html"
+              <button
+                type="button"
                 class="btn btn-light btn-sm text-success fw-semibold"
+                data-bs-toggle="modal"
+                data-bs-target="#registerModal"
               >
                 <i class="bi bi-person-plus me-1"></i> Регистрация
-              </a>
+              </button>
             </li>
           </ul>
         </div>
@@ -93,6 +97,148 @@
         <small>CampAtlas — SoftUni Capstone Project</small>
       </div>
     </footer>
+
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title h5" id="loginModalLabel">Вход в профила</h2>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Затвори"
+            ></button>
+          </div>
+          <form id="homeLoginForm" method="post" novalidate>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="homeLoginEmail" class="form-label">Имейл</label>
+                <input
+                  id="homeLoginEmail"
+                  name="email"
+                  type="email"
+                  class="form-control"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="homeLoginPassword" class="form-label">Парола</label>
+                <input
+                  id="homeLoginPassword"
+                  name="password"
+                  type="password"
+                  class="form-control"
+                  autocomplete="current-password"
+                  minlength="6"
+                  required
+                />
+              </div>
+
+              <p id="homeLoginMessage" class="small mb-0" role="status" aria-live="polite"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                Отказ
+              </button>
+              <button type="submit" class="btn btn-success">Вход</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="registerModal"
+      tabindex="-1"
+      aria-labelledby="registerModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title h5" id="registerModalLabel">Създай профил</h2>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Затвори"
+            ></button>
+          </div>
+          <form id="homeRegisterForm" method="post" novalidate>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="homeRegisterFullName" class="form-label">Име и фамилия</label>
+                <input
+                  id="homeRegisterFullName"
+                  name="full_name"
+                  type="text"
+                  class="form-control"
+                  autocomplete="name"
+                  minlength="2"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="homeRegisterEmail" class="form-label">Имейл</label>
+                <input
+                  id="homeRegisterEmail"
+                  name="email"
+                  type="email"
+                  class="form-control"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="homeRegisterPassword" class="form-label">Парола</label>
+                <input
+                  id="homeRegisterPassword"
+                  name="password"
+                  type="password"
+                  class="form-control"
+                  autocomplete="new-password"
+                  minlength="6"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="homeRegisterPasswordConfirm" class="form-label">Потвърди парола</label>
+                <input
+                  id="homeRegisterPasswordConfirm"
+                  name="password_confirm"
+                  type="password"
+                  class="form-control"
+                  autocomplete="new-password"
+                  minlength="6"
+                  required
+                />
+              </div>
+
+              <p id="homeRegisterMessage" class="small mb-0" role="status" aria-live="polite"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                Отказ
+              </button>
+              <button type="submit" class="btn btn-success">Регистрация</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <script type="module" src="/src/pages/home.page.js"></script>
   </body>
