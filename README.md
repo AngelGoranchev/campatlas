@@ -1,5 +1,8 @@
 # CampAtlas
 
+## Live Demo
+https://campatlas.netlify.app
+
 ## 1. Project Overview
 CampAtlas is a multi-page web application for discovering and managing campsites. Public visitors can browse published campsites, while authenticated users can register/login, create campsite submissions, upload photos, add favorites, and leave reviews. Administrators review pending submissions and approve or reject them.
 
@@ -110,7 +113,11 @@ Then open:
 - Users cannot set `owner_id` or `review_status` manually from the UI.
 
 ## 14. Deployment
-The project can be deployed to Netlify or Vercel. Environment variables must be configured in the hosting platform.
+The project is deployed on Netlify:
+
+https://campatlas.netlify.app
+
+Environment variables must be configured in the hosting platform.
 
 ## 15. Author
 Angel Goranchev
