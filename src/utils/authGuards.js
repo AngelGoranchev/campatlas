@@ -1,9 +1,25 @@
 import { supabase } from '../services/supabaseClient.js';
 
+function isMissingAuthSessionError(error) {
+  const message = String(error?.message || '').toLowerCase();
+  const name = String(error?.name || '').toLowerCase();
+
+  return (
+    name.includes('authsessionmissing')
+    || message.includes('auth session missing')
+    || message.includes('session missing')
+    || message.includes('missing session')
+  );
+}
+
 export async function getLoggedInUser() {
   const { data, error } = await supabase.auth.getUser();
 
   if (error) {
+    if (isMissingAuthSessionError(error)) {
+      return null;
+    }
+
     throw new Error(error.message || 'Неуспешно зареждане на текущия потребител.');
   }
 
