@@ -2,11 +2,101 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../styles/app.css';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import { getCampsiteById } from '../services/campsitesService.js';
 import { getCampsitePhotos } from '../services/photosService.js';
 import { addFavorite, removeFavorite, isFavorite } from '../services/favoritesService.js';
 import { getCampsiteReviews, createReview } from '../services/reviewsService.js';
 import { getLoggedInUser, initLogoutHandlers } from '../utils/authGuards.js';
+
+let campsiteLocationMap = null;
+let campsiteLocationMarker = null;
+
+function createMapPinIcon() {
+	return L.divIcon({
+		className: 'campatlas-map-pin-wrap',
+		html: '<span class="campatlas-map-pin-dot"></span><span class="campatlas-map-pin-tail"></span>',
+		iconSize: [24, 36],
+		iconAnchor: [12, 34],
+	});
+}
+
+function setLocationMarker(map, marker, latitude, longitude, pinIcon) {
+	const target = [latitude, longitude];
+
+	if (marker) {
+		marker.setLatLng(target);
+		return marker;
+	}
+
+	return L.marker(target, { icon: pinIcon }).addTo(map);
+}
+
+function initCampsiteLocationMap(campsite) {
+	const mapSection = document.getElementById('campsiteDetailsMapSection');
+	const mapMessage = document.getElementById('campsiteDetailsMapMessage');
+	const mapElement = document.getElementById('campsiteDetailsMap');
+
+	if (!mapSection || !mapMessage || !mapElement) {
+		return;
+	}
+
+	const latitude = Number.parseFloat(String(campsite?.latitude ?? '').trim());
+	const longitude = Number.parseFloat(String(campsite?.longitude ?? '').trim());
+	const hasValidCoordinates = Number.isFinite(latitude)
+		&& Number.isFinite(longitude)
+		&& latitude >= -90
+		&& latitude <= 90
+		&& longitude >= -180
+		&& longitude <= 180;
+
+	if (!hasValidCoordinates) {
+		mapElement.classList.add('d-none');
+		mapMessage.classList.remove('d-none');
+		mapMessage.textContent = 'За този къмпинг няма налична карта с локация.';
+		if (campsiteLocationMap) {
+			campsiteLocationMap.remove();
+			campsiteLocationMap = null;
+			campsiteLocationMarker = null;
+		}
+		return;
+	}
+
+	mapMessage.classList.add('d-none');
+	mapMessage.textContent = '';
+	mapElement.classList.remove('d-none');
+
+	if (campsiteLocationMap) {
+		campsiteLocationMap.remove();
+	}
+
+	campsiteLocationMap = L.map(mapElement, {
+		dragging: false,
+		touchZoom: false,
+		doubleClickZoom: false,
+		scrollWheelZoom: false,
+		boxZoom: false,
+		keyboard: false,
+		zoomControl: false,
+	}).setView([latitude, longitude], 11);
+
+	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> участници',
+	}).addTo(campsiteLocationMap);
+
+	campsiteLocationMarker = setLocationMarker(
+		campsiteLocationMap,
+		campsiteLocationMarker,
+		latitude,
+		longitude,
+		createMapPinIcon(),
+	);
+
+	window.requestAnimationFrame(() => {
+		campsiteLocationMap?.invalidateSize();
+	});
+}
 
 const amenityConfig = [
 	{ key: 'has_water', label: 'Вода', icon: 'bi-droplet' },
@@ -258,6 +348,7 @@ export function renderCampsiteDetails(campsite, photos) {
 	negativeSection.classList.toggle('d-none', !hasNegativeNotes);
 	negativeNotesElement.textContent = hasNegativeNotes ? campsite.negative_notes : '';
 
+	initCampsiteLocationMap(campsite);
 	renderGallery(photos);
 }
 
