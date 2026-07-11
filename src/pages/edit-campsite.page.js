@@ -2,12 +2,97 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../styles/app.css';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import { getCampsiteById, updateCampsite, deleteCampsite } from '../services/campsitesService.js';
 import { getCampsitePhotos, uploadCampsitePhoto, deleteCampsitePhoto } from '../services/photosService.js';
 import { requireAuth, initLogoutHandlers } from '../utils/authGuards.js';
 
 let currentCampsiteId = null;
 let currentCampsite = null;
+
+const BULGARIA_CENTER = [42.7339, 25.4858];
+const BULGARIA_ZOOM = 7;
+const SELECTED_LOCATION_ZOOM = 11;
+
+function createMapPinIcon() {
+	return L.divIcon({
+		className: 'campatlas-map-pin-wrap',
+		html: '<span class="campatlas-map-pin-dot"></span><span class="campatlas-map-pin-tail"></span>',
+		iconSize: [24, 36],
+		iconAnchor: [12, 34],
+	});
+}
+
+function setLocationMarker(map, marker, latitude, longitude, pinIcon) {
+	const target = [latitude, longitude];
+
+	if (marker) {
+		marker.setLatLng(target);
+		return marker;
+	}
+
+	return L.marker(target, { icon: pinIcon }).addTo(map);
+}
+
+function initLocationPickerMap(mapElement, latitudeInput, longitudeInput) {
+	if (!mapElement || !latitudeInput || !longitudeInput) {
+		return null;
+	}
+
+	const map = L.map(mapElement).setView(BULGARIA_CENTER, BULGARIA_ZOOM);
+	const pinIcon = createMapPinIcon();
+	let marker = null;
+
+	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> участници',
+	}).addTo(map);
+
+	const parseLatitude = () => Number.parseFloat(String(latitudeInput.value ?? '').trim());
+	const parseLongitude = () => Number.parseFloat(String(longitudeInput.value ?? '').trim());
+	const hasValidCoordinates = (latitude, longitude) => {
+		return Number.isFinite(latitude)
+			&& Number.isFinite(longitude)
+			&& latitude >= -90
+			&& latitude <= 90
+			&& longitude >= -180
+			&& longitude <= 180;
+	};
+
+	const syncMarkerFromInputs = () => {
+		const latitude = parseLatitude();
+		const longitude = parseLongitude();
+
+		if (!hasValidCoordinates(latitude, longitude)) {
+			return;
+		}
+
+		marker = setLocationMarker(map, marker, latitude, longitude, pinIcon);
+		map.setView([latitude, longitude], Math.max(map.getZoom(), SELECTED_LOCATION_ZOOM));
+	};
+
+	map.on('click', (event) => {
+		const { lat, lng } = event.latlng;
+		latitudeInput.value = lat.toFixed(7);
+		longitudeInput.value = lng.toFixed(7);
+		marker = setLocationMarker(map, marker, lat, lng, pinIcon);
+	});
+
+	latitudeInput.addEventListener('change', syncMarkerFromInputs);
+	longitudeInput.addEventListener('change', syncMarkerFromInputs);
+	latitudeInput.addEventListener('blur', syncMarkerFromInputs);
+	longitudeInput.addEventListener('blur', syncMarkerFromInputs);
+
+	syncMarkerFromInputs();
+
+	return {
+		refreshSize() {
+			window.setTimeout(() => {
+				map.invalidateSize();
+			}, 0);
+		},
+	};
+}
 
 function toOptionalNumber(value) {
 	const rawValue = String(value ?? '').trim();
@@ -336,6 +421,9 @@ export async function initEditCampsitePage() {
 	const form = document.getElementById('editCampsiteForm');
 	const saveButton = document.getElementById('saveCampsiteButton');
 	const deleteButton = document.getElementById('deleteCampsiteButton');
+	const latitudeInput = document.getElementById('latitude');
+	const longitudeInput = document.getElementById('longitude');
+	const mapElement = document.getElementById('editCampsiteMap');
 
 	if (
 		!contentElement
@@ -385,11 +473,13 @@ export async function initEditCampsitePage() {
 
 		currentCampsite = campsite;
 		populateForm(campsite);
+		const mapController = initLocationPickerMap(mapElement, latitudeInput, longitudeInput);
 
 		const photos = await getCampsitePhotos(campsiteId);
 		renderPhotos(photos);
 
 		contentElement.classList.remove('d-none');
+		mapController?.refreshSize();
 
 		form.addEventListener('submit', async (event) => {
 			event.preventDefault();
