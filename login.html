@@ -6,19 +6,25 @@
     <title>CampAtlas | Вход</title>
   </head>
   <body>
-    <main class="container py-5 app-page">
+    <main class="container py-5 app-page form-page">
       <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-5">
-          <div class="card border-0 shadow-sm">
+        <div class="col-12 col-md-10 col-lg-6 col-xl-5 form-shell">
+          <div class="card auth-card form-card border-0 shadow-sm">
             <div class="card-body p-4 p-md-5">
-              <h1 class="h3 mb-3">Вход</h1>
-              <p class="text-muted mb-4">Влез в своя профил, за да управляваш къмпингите си.</p>
+              <div class="form-card-header text-center">
+                <span class="auth-card-icon" aria-hidden="true">
+                  <i class="bi bi-box-arrow-in-right"></i>
+                </span>
+                <h1 class="h3 mb-2">Добре дошли отново</h1>
+                <p class="text-muted mb-0">Влезте в своя профил, за да управлявате къмпингите си.</p>
+              </div>
 
               <div id="loginMessage" class="alert d-none" role="alert" aria-live="polite"></div>
 
               <form id="loginForm" class="needs-validation" method="post" novalidate>
+                <p class="form-helper mb-3">Използвайте имейла и паролата, с които сте регистрирани в CampAtlas.</p>
                 <div class="mb-3">
-                  <label for="loginEmail" class="form-label">Имейл</label>
+                  <label for="loginEmail" class="form-label">Имейл <span class="required-mark">*</span></label>
                   <input
                     id="loginEmail"
                     name="email"
@@ -31,7 +37,7 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="loginPassword" class="form-label">Парола</label>
+                  <label for="loginPassword" class="form-label">Парола <span class="required-mark">*</span></label>
                   <input
                     id="loginPassword"
                     name="password"
@@ -44,13 +50,17 @@
                   <div class="invalid-feedback">Паролата трябва да бъде поне 6 символа.</div>
                 </div>
 
-                <button type="submit" class="btn btn-success w-100">
-                  <i class="bi bi-box-arrow-in-right me-2"></i>Вход
-                </button>
+                <div class="form-actions mt-4">
+                  <button type="submit" class="btn btn-success w-100">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Вход
+                  </button>
+                </div>
               </form>
 
-              <div class="d-flex justify-content-between align-items-center mt-4 gap-2">
-                <a href="/register.html" class="btn btn-outline-success btn-sm">Нямате профил?</a>
+              <div class="d-flex flex-wrap justify-content-between align-items-center mt-4 gap-2">
+                <a href="/register.html" class="btn btn-outline-success btn-sm">
+                  <i class="bi bi-person-plus me-1"></i>Нямате профил?
+                </a>
                 <a href="/index.html" class="btn btn-link btn-sm text-success px-0">Към началото</a>
               </div>
             </div>
