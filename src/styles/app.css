@@ -159,6 +159,79 @@ a:focus-visible {
   padding: 1rem 1.1rem;
 }
 
+.details-hero {
+  border: 1px solid var(--ca-border);
+  border-radius: var(--ca-radius-lg);
+  background:
+    radial-gradient(circle at 86% 14%, rgba(47, 125, 74, 0.15), rgba(47, 125, 74, 0) 44%),
+    #ffffff;
+  box-shadow: var(--ca-shadow-sm);
+}
+
+.details-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--ca-text-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.details-price {
+  font-size: 1.2rem;
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--ca-primary-dark);
+}
+
+.details-section-card {
+  border: 1px solid var(--ca-border);
+  border-radius: var(--ca-radius-md);
+  background: #ffffff;
+  box-shadow: var(--ca-shadow-sm);
+}
+
+.details-gallery-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--ca-border);
+  border-radius: 0.75rem;
+  background: #dfe8df;
+}
+
+.details-amenities {
+  gap: 0.55rem !important;
+}
+
+.details-note-card {
+  border: 1px solid color-mix(in srgb, var(--ca-primary) 20%, var(--ca-border));
+  border-radius: 0.8rem;
+  background: color-mix(in srgb, #ffffff 84%, var(--ca-sage));
+  padding: 0.9rem 1rem;
+}
+
+.review-card {
+  border: 1px solid var(--ca-border);
+  border-radius: 0.9rem;
+  background: #ffffff;
+  box-shadow: 0 6px 14px rgba(31, 45, 37, 0.06);
+  padding: 0.9rem 1rem;
+}
+
+.review-rating-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--ca-primary) 30%, #b8d9ca);
+  background: color-mix(in srgb, #d1e7dd 78%, #ffffff);
+  color: #0f5132;
+  padding: 0.28rem 0.62rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
 .hero-section {
   background:
     linear-gradient(135deg, rgba(31, 95, 52, 0.93), rgba(47, 125, 74, 0.9)),
@@ -470,6 +543,22 @@ a:focus-visible {
 
   .catalog-header {
     border-radius: var(--ca-radius-md);
+  }
+
+  .details-hero {
+    border-radius: var(--ca-radius-md);
+  }
+
+  .details-section-card {
+    border-radius: var(--ca-radius-sm);
+  }
+
+  .details-gallery-image {
+    height: 205px;
+  }
+
+  .details-price {
+    font-size: 1.08rem;
   }
 
   .campsite-card {
