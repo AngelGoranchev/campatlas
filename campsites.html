@@ -7,38 +7,47 @@
   </head>
   <body>
     <main class="container py-5 app-page">
-      <section class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
-        <div>
-          <h1 class="mb-2">Къмпинги</h1>
-          <p class="text-muted mb-0">Разгледайте публикувани места за къмпинг от общността на CampAtlas.</p>
-        </div>
+      <section class="catalog-header p-4 p-md-5 mb-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+          <div>
+            <span class="section-eyebrow mb-2">Каталог CampAtlas</span>
+            <h1 class="mb-2">Къмпинги</h1>
+            <p class="app-muted mb-0">
+              Разгледай публикувани къмпинг места, добавени от потребители и одобрени от администратор.
+            </p>
+          </div>
 
-        <div class="d-flex flex-wrap gap-2">
-          <a id="createCampsiteLink" href="/create-campsite.html" class="btn btn-success d-none">
-            <i class="bi bi-plus-circle me-1"></i>Добави къмпинг
-          </a>
+          <div class="d-flex flex-wrap gap-2">
+            <a id="createCampsiteLink" href="/create-campsite.html" class="btn btn-success d-none">
+              <i class="bi bi-plus-circle me-1"></i>Добави къмпинг
+            </a>
 
-          <div id="guestAuthActions" class="d-flex flex-wrap gap-2">
-            <a href="/login.html" class="btn btn-outline-success">Вход</a>
-            <a href="/register.html" class="btn btn-success">Регистрация</a>
+            <div id="guestAuthActions" class="d-flex flex-wrap gap-2">
+              <a href="/login.html" class="btn btn-outline-success">Вход</a>
+              <a href="/register.html" class="btn btn-success">Регистрация</a>
+            </div>
           </div>
         </div>
       </section>
 
-      <div id="campsitesLoading" class="alert alert-info" role="status">
-        <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
-        Зареждане на публикуваните къмпинги...
+      <div id="campsitesLoading" class="alert alert-info d-flex align-items-center gap-2" role="status">
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span>Зареждане на публикуваните къмпинги...</span>
       </div>
 
       <div id="campsitesError" class="alert alert-danger d-none" role="alert"></div>
 
-      <div id="campsitesEmpty" class="alert alert-secondary d-none" role="status">
-        Все още няма публикувани къмпинги.
+      <div id="campsitesEmpty" class="catalog-empty-state d-none" role="status">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <i class="bi bi-signpost-split fs-5"></i>
+          <strong>Няма публикувани резултати</strong>
+        </div>
+        <p class="mb-0">Все още няма публикувани къмпинги.</p>
       </div>
 
       <section id="campsitesGrid" class="row g-4 d-none" aria-live="polite"></section>
 
-      <div class="mt-4">
+      <div class="mt-4 pt-2">
         <a href="/index.html" class="btn btn-outline-success">Към началото</a>
       </div>
     </main>

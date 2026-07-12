@@ -6,10 +6,6 @@ import { getPublishedCampsites } from '../services/campsitesService.js';
 import { getCampsitePhotos } from '../services/photosService.js';
 import { getLoggedInUser, initLogoutHandlers } from '../utils/authGuards.js';
 
-const PHOTO_PLACEHOLDER_URL = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(
-	'<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#198754" offset="0"/><stop stop-color="#0dcaf0" offset="1"/></linearGradient></defs><rect fill="url(#g)" width="960" height="540"/><g fill="rgba(255,255,255,.85)"><path d="M120 420l170-180 120 130 90-95 150 145z"/><circle cx="650" cy="170" r="45"/></g><text x="50%" y="86%" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" fill="white">CampAtlas</text></svg>',
-)}`;
-
 const amenityConfig = [
 	{ key: 'has_water', label: 'Вода', icon: 'bi-droplet' },
 	{ key: 'has_electricity', label: 'Ток', icon: 'bi-lightning-charge' },
@@ -19,7 +15,7 @@ const amenityConfig = [
 	{ key: 'pets_allowed', label: 'Домашни любимци', icon: 'bi-heart' },
 ];
 
-function getDescriptionExcerpt(description, maxLength = 130) {
+function getDescriptionPreview(description, maxLength = 140) {
 	const safeDescription = String(description || '').trim();
 
 	if (!safeDescription) {
@@ -50,12 +46,12 @@ async function getFirstPhotoUrl(campsiteId) {
 		const photos = await getCampsitePhotos(campsiteId);
 
 		if (!Array.isArray(photos) || photos.length === 0) {
-			return PHOTO_PLACEHOLDER_URL;
+			return null;
 		}
 
-		return photos[0].public_url || PHOTO_PLACEHOLDER_URL;
+		return photos[0].public_url || null;
 	} catch {
-		return PHOTO_PLACEHOLDER_URL;
+		return null;
 	}
 }
 
@@ -69,7 +65,7 @@ function renderAmenityBadges(campsite) {
 		}
 
 		const badge = document.createElement('span');
-		badge.className = 'badge text-bg-light border';
+		badge.className = 'amenity-badge';
 
 		const icon = document.createElement('i');
 		icon.className = `bi ${amenity.icon} me-1`;
@@ -81,7 +77,7 @@ function renderAmenityBadges(campsite) {
 
 	if (!wrapper.children.length) {
 		const fallbackBadge = document.createElement('span');
-		fallbackBadge.className = 'badge text-bg-secondary';
+		fallbackBadge.className = 'amenity-badge text-bg-secondary border-0';
 		fallbackBadge.textContent = 'Без отбелязани удобства';
 		wrapper.appendChild(fallbackBadge);
 	}
@@ -89,39 +85,58 @@ function renderAmenityBadges(campsite) {
 	return wrapper;
 }
 
-function renderCampsiteCard(campsite, photoUrl) {
+function createCampsiteImage(campsite, photoUrl) {
+	if (photoUrl) {
+		const image = document.createElement('img');
+		image.className = 'campsite-card-image';
+		image.src = photoUrl;
+		image.alt = `Снимка на ${campsite.title || 'къмпинг'}`;
+		image.loading = 'lazy';
+		return image;
+	}
+
+	const placeholder = document.createElement('div');
+	placeholder.className = 'campsite-card-image-placeholder';
+
+	const icon = document.createElement('i');
+	icon.className = 'bi bi-tree-fill';
+	placeholder.appendChild(icon);
+
+	const label = document.createElement('span');
+	label.textContent = 'Няма налична снимка';
+	placeholder.appendChild(label);
+
+	return placeholder;
+}
+
+function createCampsiteCard(campsite, photoUrl) {
 	const col = document.createElement('article');
 	col.className = 'col-12 col-md-6 col-xl-4';
 
 	const card = document.createElement('div');
-	card.className = 'card h-100 shadow-sm border-0';
+	card.className = 'campsite-card h-100 app-card-hover';
 
-	const image = document.createElement('img');
-	image.className = 'card-img-top';
-	image.src = photoUrl;
-	image.alt = `Снимка на ${campsite.title || 'къмпинг'}`;
-	image.loading = 'lazy';
-	image.style.height = '220px';
-	image.style.objectFit = 'cover';
-	card.appendChild(image);
+	card.appendChild(createCampsiteImage(campsite, photoUrl));
 
 	const cardBody = document.createElement('div');
-	cardBody.className = 'card-body d-flex flex-column';
+	cardBody.className = 'campsite-card-body d-flex flex-column';
 
 	const title = document.createElement('h2');
-	title.className = 'h5 card-title mb-2';
+	title.className = 'h5 mb-1';
 	title.textContent = campsite.title || 'Къмпинг без име';
 	cardBody.appendChild(title);
 
-	const location = document.createElement('p');
-	location.className = 'text-muted small mb-2';
-	location.textContent = campsite.location_name || 'Няма посочена локация';
-	cardBody.appendChild(location);
+	const meta = document.createElement('p');
+	meta.className = 'campsite-card-meta mb-3';
 
-	const description = document.createElement('p');
-	description.className = 'mb-3';
-	description.textContent = getDescriptionExcerpt(campsite.description);
-	cardBody.appendChild(description);
+	const locationIcon = document.createElement('i');
+	locationIcon.className = 'bi bi-geo-alt-fill';
+	meta.appendChild(locationIcon);
+
+	const locationText = document.createElement('span');
+	locationText.textContent = campsite.location_name || 'Няма посочена локация';
+	meta.appendChild(locationText);
+	cardBody.appendChild(meta);
 
 	const formattedPrice = formatPrice(campsite.price_per_night);
 	const price = document.createElement('p');
@@ -131,12 +146,17 @@ function renderCampsiteCard(campsite, photoUrl) {
 		: 'Цена: не е посочена';
 	cardBody.appendChild(price);
 
+	const description = document.createElement('p');
+	description.className = 'mb-3 app-muted';
+	description.textContent = getDescriptionPreview(campsite.description);
+	cardBody.appendChild(description);
+
 	cardBody.appendChild(renderAmenityBadges(campsite));
 
 	const actions = document.createElement('div');
-	actions.className = 'mt-4';
+	actions.className = 'mt-auto pt-3';
 	const detailsLink = document.createElement('a');
-	detailsLink.className = 'btn btn-outline-success btn-sm';
+	detailsLink.className = 'btn btn-outline-success';
 	detailsLink.href = `/campsite-details.html?id=${encodeURIComponent(campsite.id)}`;
 	detailsLink.textContent = 'Виж детайли';
 	actions.appendChild(detailsLink);
@@ -152,7 +172,7 @@ function renderCampsites(campsites, gridElement) {
 	const fragment = document.createDocumentFragment();
 
 	campsites.forEach((entry) => {
-		fragment.appendChild(renderCampsiteCard(entry.campsite, entry.photoUrl));
+		fragment.appendChild(createCampsiteCard(entry.campsite, entry.photoUrl));
 	});
 
 	gridElement.replaceChildren(fragment);

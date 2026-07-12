@@ -78,6 +78,87 @@ a:focus-visible {
   box-shadow: var(--ca-shadow-md);
 }
 
+.catalog-header {
+  border: 1px solid var(--ca-border);
+  border-radius: var(--ca-radius-lg);
+  background:
+    radial-gradient(circle at 85% 10%, rgba(47, 125, 74, 0.12), rgba(47, 125, 74, 0) 42%),
+    #ffffff;
+  box-shadow: var(--ca-shadow-sm);
+}
+
+.campsite-card {
+  height: 100%;
+  border: 1px solid var(--ca-border);
+  border-radius: var(--ca-radius-md);
+  background: #ffffff;
+  box-shadow: var(--ca-shadow-sm);
+  overflow: hidden;
+}
+
+.campsite-card-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  background: #dfe8df;
+}
+
+.campsite-card-image-placeholder {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  background:
+    linear-gradient(150deg, color-mix(in srgb, var(--ca-sage) 70%, #ffffff), #ffffff);
+  color: var(--ca-primary-dark);
+  border-bottom: 1px solid var(--ca-border);
+}
+
+.campsite-card-image-placeholder i {
+  font-size: 1.55rem;
+}
+
+.campsite-card-image-placeholder span {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.campsite-card-body {
+  padding: 1rem 1rem 1.1rem;
+}
+
+.campsite-card-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--ca-text-muted);
+}
+
+.amenity-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--ca-primary) 22%, var(--ca-border));
+  background: color-mix(in srgb, #ffffff 88%, var(--ca-sage));
+  border-radius: 999px;
+  padding: 0.28rem 0.58rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--ca-text);
+}
+
+.catalog-empty-state {
+  border: 1px dashed color-mix(in srgb, var(--ca-primary) 35%, var(--ca-border));
+  border-radius: var(--ca-radius-md);
+  background: color-mix(in srgb, #ffffff 75%, var(--ca-sage));
+  box-shadow: var(--ca-shadow-sm);
+  padding: 1rem 1.1rem;
+}
+
 .hero-section {
   background:
     linear-gradient(135deg, rgba(31, 95, 52, 0.93), rgba(47, 125, 74, 0.9)),
@@ -385,5 +466,18 @@ a:focus-visible {
   .home-step-card,
   .home-cta {
     border-radius: var(--ca-radius-sm);
+  }
+
+  .catalog-header {
+    border-radius: var(--ca-radius-md);
+  }
+
+  .campsite-card {
+    border-radius: var(--ca-radius-sm);
+  }
+
+  .campsite-card-image,
+  .campsite-card-image-placeholder {
+    height: 205px;
   }
 }
