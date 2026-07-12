@@ -69,37 +69,216 @@
     </nav>
 
     <main class="container py-5 app-page">
-      <section class="hero-section p-5 mb-4">
-        <h1 class="display-5 fw-bold">Откривай и споделяй къмпинги</h1>
-        <p class="lead">
-          CampAtlas е място, където потребителите описват къмпингите, които са посетили,
-          добавят снимки, локация, плюсове и минуси.
-        </p>
-        <a href="/campsites.html" class="btn btn-light btn-lg">
-          <i class="bi bi-map"></i> Разгледай къмпинги
-        </a>
+      <section class="home-hero p-4 p-lg-5 mb-4">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-12 col-lg-7 d-flex flex-column justify-content-center">
+            <p class="section-eyebrow mb-3">Платформа за къмпинг общността</p>
+            <h1 class="display-5 fw-bold mb-3">Откривай къмпинги, които си струват</h1>
+            <p class="lead mb-4">
+              CampAtlas ти помага да намираш, описваш и споделяш добри места за къмпинг с
+              реални снимки, карта, удобства и отзиви.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+              <a href="/campsites.html" class="btn btn-light btn-lg">
+                <i class="bi bi-compass me-1"></i>Разгледай къмпинги
+              </a>
+              <a href="/create-campsite.html" class="btn btn-outline-light btn-lg">
+                <i class="bi bi-plus-circle me-1"></i>Добави къмпинг
+              </a>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-5">
+            <article class="home-hero-card h-100 p-4">
+              <h2 class="h5 mb-3">С какво помага CampAtlas</h2>
+              <div class="d-grid gap-3">
+                <div class="d-flex align-items-start gap-3">
+                  <span class="icon-badge">
+                    <i class="bi bi-geo-alt"></i>
+                  </span>
+                  <div>
+                    <h3 class="h6 mb-1">Карта и локация</h3>
+                    <p class="mb-0 app-muted">Избирай координати директно от интерактивната карта.</p>
+                  </div>
+                </div>
+
+                <div class="d-flex align-items-start gap-3">
+                  <span class="icon-badge">
+                    <i class="bi bi-images"></i>
+                  </span>
+                  <div>
+                    <h3 class="h6 mb-1">Снимки от потребители</h3>
+                    <p class="mb-0 app-muted">Виж реална среда и условия преди да тръгнеш.</p>
+                  </div>
+                </div>
+
+                <div class="d-flex align-items-start gap-3">
+                  <span class="icon-badge">
+                    <i class="bi bi-check2-circle"></i>
+                  </span>
+                  <div>
+                    <h3 class="h6 mb-1">Одобрени къмпинги</h3>
+                    <p class="mb-0 app-muted">Публичният каталог показва само проверени предложения.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
       </section>
 
-      <section class="placeholder-box p-4">
-        <h2 class="h4">Какво предлага CampAtlas</h2>
-        <ul class="mb-0 ps-3">
-          <li>CampAtlas поддържа регистрация и вход на потребители.</li>
-          <li>Автентикираните потребители могат да създават къмпинги и да качват снимки.</li>
-          <li>Администраторите могат да одобряват или отказват подадените къмпинги.</li>
-          <li>Публикуваните къмпинги се виждат в публичния списък.</li>
-          <li>Потребителите могат да добавят любими къмпинги и да оставят отзиви.</li>
-        </ul>
+      <section class="app-section mb-5">
+        <div class="row g-3">
+          <div class="col-12 col-md-4">
+            <article class="home-highlight-card h-100 p-3 p-lg-4">
+              <p class="section-eyebrow mb-2">6 таблици</p>
+              <h2 class="h5 mb-2">Supabase база данни</h2>
+              <p class="mb-0 app-muted">Структурирани данни за къмпинги, профили, снимки, любими и отзиви.</p>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <article class="home-highlight-card h-100 p-3 p-lg-4">
+              <p class="section-eyebrow mb-2">RLS защита</p>
+              <h2 class="h5 mb-2">Контролиран достъп</h2>
+              <p class="mb-0 app-muted">Политиките ограничават действията до правилните потребители и роли.</p>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <article class="home-highlight-card h-100 p-3 p-lg-4">
+              <p class="section-eyebrow mb-2">Карта</p>
+              <h2 class="h5 mb-2">Избор на локация с Leaflet</h2>
+              <p class="mb-0 app-muted">Позиционирай къмпинга прецизно с интерактивна OpenStreetMap карта.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="app-section mb-5">
+        <div class="app-section-header mb-3">
+          <p class="section-eyebrow mb-2">Работен процес</p>
+          <h2 class="h3 mb-0">Как работи</h2>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-12 col-md-4">
+            <article class="home-step-card h-100 p-4">
+              <h3 class="h5 mb-2">1. Създай профил</h3>
+              <p class="mb-0 app-muted">
+                Регистрирай се и управлявай собствените си къмпинг предложения.
+              </p>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <article class="home-step-card h-100 p-4">
+              <h3 class="h5 mb-2">2. Добави къмпинг</h3>
+              <p class="mb-0 app-muted">
+                Опиши мястото, избери локация на картата и качи снимки.
+              </p>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <article class="home-step-card h-100 p-4">
+              <h3 class="h5 mb-2">3. След одобрение става публичен</h3>
+              <p class="mb-0 app-muted">
+                Администратор преглежда предложението и го публикува в каталога.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="app-section mb-5">
+        <div class="app-section-header mb-3">
+          <p class="section-eyebrow mb-2">Основни възможности</p>
+          <h2 class="h3 mb-0">Какво предлага CampAtlas</h2>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-12 col-sm-6 col-lg-4">
+            <article class="home-feature-card h-100 p-4">
+              <span class="icon-badge mb-3"><i class="bi bi-person-badge"></i></span>
+              <h3 class="h5 mb-2">Потребителски профили</h3>
+              <p class="mb-0 app-muted">Управлявай личните си предложения, снимки и активности.</p>
+            </article>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <article class="home-feature-card h-100 p-4">
+              <span class="icon-badge mb-3"><i class="bi bi-camera"></i></span>
+              <h3 class="h5 mb-2">Качване на снимки</h3>
+              <p class="mb-0 app-muted">Добавяй визуална информация за атмосферата и условията.</p>
+            </article>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <article class="home-feature-card h-100 p-4">
+              <span class="icon-badge mb-3"><i class="bi bi-pin-map"></i></span>
+              <h3 class="h5 mb-2">Карта и координати</h3>
+              <p class="mb-0 app-muted">Точно позициониране на къмпинга чрез карта и географски координати.</p>
+            </article>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <article class="home-feature-card h-100 p-4">
+              <span class="icon-badge mb-3"><i class="bi bi-heart"></i></span>
+              <h3 class="h5 mb-2">Любими къмпинги</h3>
+              <p class="mb-0 app-muted">Запази интересните места и се върни към тях по-късно.</p>
+            </article>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <article class="home-feature-card h-100 p-4">
+              <span class="icon-badge mb-3"><i class="bi bi-chat-left-text"></i></span>
+              <h3 class="h5 mb-2">Отзиви</h3>
+              <p class="mb-0 app-muted">Чети и оставяй оценки и коментари след реални посещения.</p>
+            </article>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <article class="home-feature-card h-100 p-4">
+              <span class="icon-badge mb-3"><i class="bi bi-shield-check"></i></span>
+              <h3 class="h5 mb-2">Админ одобрение</h3>
+              <p class="mb-0 app-muted">Новите предложения се публикуват след проверка от администратор.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-cta p-4 p-lg-5 mb-2">
+        <div class="row g-3 align-items-center">
+          <div class="col-12 col-lg-8">
+            <p class="section-eyebrow mb-2">Стани част от общността</p>
+            <h2 class="h3 mb-2">Имаш любимо място за къмпинг?</h2>
+            <p class="mb-0 app-muted">
+              Сподели го в CampAtlas и помогни на други къмпингари да го открият.
+            </p>
+          </div>
+
+          <div class="col-12 col-lg-4 d-flex flex-wrap justify-content-lg-end gap-2">
+            <a href="/create-campsite.html" class="btn btn-success">
+              <i class="bi bi-plus-circle me-1"></i>Добави къмпинг
+            </a>
+            <a href="/campsites.html" class="btn btn-outline-success">
+              <i class="bi bi-map me-1"></i>Виж всички къмпинги
+            </a>
+          </div>
+        </div>
       </section>
     </main>
 
-    <footer class="bg-dark text-white py-4">
-      <div class="container text-center">
-        <small>CampAtlas — SoftUni Capstone Project</small>
+    <footer class="home-footer py-4">
+      <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+        <p class="mb-0 fw-semibold">CampAtlas</p>
+        <small class="app-muted">SoftUni Capstone Project • Готово за live demo и GitHub представяне</small>
       </div>
     </footer>
 
     <div
-      class="modal fade"
+      class="modal fade auth-modal"
       id="loginModal"
       tabindex="-1"
       aria-labelledby="loginModalLabel"
@@ -157,7 +336,7 @@
     </div>
 
     <div
-      class="modal fade"
+      class="modal fade auth-modal"
       id="registerModal"
       tabindex="-1"
       aria-labelledby="registerModalLabel"
