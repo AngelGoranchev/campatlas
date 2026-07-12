@@ -408,6 +408,89 @@ a:focus-visible {
   color: var(--ca-text-muted);
 }
 
+.form-page {
+  position: relative;
+}
+
+.form-shell {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+}
+
+.form-card {
+  border-radius: var(--ca-radius-lg);
+}
+
+.form-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.15rem;
+}
+
+.form-section {
+  border: 1px solid var(--ca-border);
+  border-radius: var(--ca-radius-md);
+  background:
+    linear-gradient(160deg, color-mix(in srgb, #ffffff 88%, var(--ca-sage)), #ffffff 45%);
+  box-shadow: var(--ca-shadow-sm);
+}
+
+.form-section-title {
+  margin-bottom: 0.25rem;
+}
+
+.form-helper {
+  color: var(--ca-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.auth-card {
+  border: 1px solid var(--ca-border);
+  background:
+    radial-gradient(circle at 88% 8%, rgba(47, 125, 74, 0.1), rgba(47, 125, 74, 0) 44%),
+    #ffffff;
+}
+
+.auth-card-icon {
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--ca-primary-dark);
+  border: 1px solid color-mix(in srgb, var(--ca-primary) 30%, var(--ca-border));
+  background: color-mix(in srgb, var(--ca-sage) 70%, #ffffff);
+  margin: 0 auto 0.75rem;
+}
+
+.field-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+.field-grid-full {
+  grid-column: 1 / -1;
+}
+
+.required-mark {
+  color: #b42318;
+  font-weight: 700;
+}
+
 .form-label {
   font-weight: 600;
   color: #243329;
@@ -430,14 +513,34 @@ a:focus-visible {
 }
 
 .auth-modal .modal-content {
+  overflow: hidden;
   border-radius: var(--ca-radius-lg);
   border: 1px solid var(--ca-border);
+  background:
+    radial-gradient(circle at 92% 12%, rgba(47, 125, 74, 0.09), rgba(47, 125, 74, 0) 42%),
+    #ffffff;
 }
 
 .auth-modal .modal-header,
 .auth-modal .modal-body {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.auth-modal .modal-header {
+  padding-top: 1.2rem;
+  padding-bottom: 0.85rem;
+  align-items: flex-start;
+}
+
+.auth-modal .modal-body {
+  padding-top: 0.9rem;
+  padding-bottom: 0.95rem;
+}
+
+.auth-modal .modal-footer {
+  padding: 0.95rem 1.5rem 1.25rem;
+  border-top-color: color-mix(in srgb, var(--ca-border) 75%, #ffffff);
 }
 
 .auth-modal .input-group-text {
@@ -494,6 +597,16 @@ a:focus-visible {
 
 .object-fit-cover {
   object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .field-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .form-actions {
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 767.98px) {
@@ -568,5 +681,38 @@ a:focus-visible {
   .campsite-card-image,
   .campsite-card-image-placeholder {
     height: 205px;
+  }
+
+  .form-shell {
+    gap: 0.85rem;
+  }
+
+  .form-card,
+  .form-section,
+  .auth-modal .modal-content {
+    border-radius: var(--ca-radius-sm);
+  }
+
+  .form-card-header {
+    margin-bottom: 0.95rem;
+  }
+
+  .auth-modal .modal-header,
+  .auth-modal .modal-body,
+  .auth-modal .modal-footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .auth-modal .modal-footer {
+    padding-bottom: 1rem;
+  }
+
+  .form-actions {
+    width: 100%;
+  }
+
+  .form-actions .btn {
+    width: 100%;
   }
 }

@@ -6,7 +6,7 @@
     <title>CampAtlas | Редакция на къмпинг</title>
   </head>
   <body>
-    <main class="container py-5 app-page">
+    <main class="container py-5 app-page form-page">
       <section class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
         <div>
           <h1 class="mb-2">Редакция на къмпинг</h1>
@@ -32,69 +32,92 @@
       <div id="editCampsitePublishedNotice" class="alert alert-warning d-none" role="alert"></div>
 
       <section id="editCampsiteContent" class="d-none">
-        <section class="card border-0 shadow-sm mb-4">
+        <section class="form-section card border-0 shadow-sm mb-4">
           <div class="card-body p-4">
             <h2 class="h5 mb-3">Текущи снимки</h2>
+            <p class="form-helper mb-3">Тук виждате вече качените снимки за този къмпинг.</p>
             <div id="currentPhotosGallery" class="row g-3"></div>
           </div>
         </section>
 
-        <section class="card border-0 shadow-sm">
+        <section class="form-section card border-0 shadow-sm">
           <div class="card-body p-4">
-            <form id="editCampsiteForm" class="row g-3" method="post" novalidate>
-              <div class="col-12">
-                <label for="title" class="form-label">Заглавие</label>
-                <input id="title" name="title" type="text" class="form-control" maxlength="120" required />
-              </div>
+            <form id="editCampsiteForm" class="form-shell" method="post" novalidate>
+              <section class="form-section mb-4">
+                <div class="form-section-title">
+                  <h3 class="h5 mb-1">Основна информация</h3>
+                  <p class="form-helper mb-0">Актуализирайте основните данни за вашия къмпинг.</p>
+                </div>
 
-              <div class="col-12">
-                <label for="description" class="form-label">Описание</label>
-                <textarea
-                  id="description"
-                  name="description"
-                  class="form-control"
-                  rows="5"
-                  maxlength="5000"
-                  required
-                ></textarea>
-              </div>
+                <div class="field-grid mt-3">
+                  <div>
+                    <label for="title" class="form-label">Заглавие <span class="required-mark">*</span></label>
+                    <input id="title" name="title" type="text" class="form-control" maxlength="120" required />
+                  </div>
 
-              <div class="col-12 col-lg-6">
-                <label for="locationName" class="form-label">Локация</label>
-                <input id="locationName" name="location_name" type="text" class="form-control" maxlength="200" required />
-              </div>
+                  <div class="field-grid-full">
+                    <label for="description" class="form-label">Описание <span class="required-mark">*</span></label>
+                    <textarea
+                      id="description"
+                      name="description"
+                      class="form-control"
+                      rows="5"
+                      maxlength="5000"
+                      required
+                    ></textarea>
+                  </div>
 
-              <div class="col-12 col-sm-6 col-lg-3">
-                <label for="latitude" class="form-label">Географска ширина</label>
-                <input id="latitude" name="latitude" type="number" class="form-control" step="0.0000001" min="-90" max="90" />
-              </div>
+                  <div>
+                    <label for="pricePerNight" class="form-label">Цена на нощувка (лв.)</label>
+                    <input
+                      id="pricePerNight"
+                      name="price_per_night"
+                      type="number"
+                      class="form-control"
+                      step="0.01"
+                      min="0"
+                    />
+                  </div>
+                </div>
+              </section>
 
-              <div class="col-12 col-sm-6 col-lg-3">
-                <label for="longitude" class="form-label">Географска дължина</label>
-                <input id="longitude" name="longitude" type="number" class="form-control" step="0.0000001" min="-180" max="180" />
-              </div>
+              <section class="form-section mb-4">
+                <div class="form-section-title">
+                  <h3 class="h5 mb-1">Локация</h3>
+                  <p class="form-helper mb-0">Изберете нова точка от картата или въведете координати ръчно.</p>
+                </div>
 
-              <div class="col-12">
-                <label for="editCampsiteMap" class="form-label mb-2">Локация на картата</label>
-                <div class="form-text mb-2">Кликнете върху картата, за да изберете локация на къмпинга.</div>
-                <div id="editCampsiteMap" class="map-container" aria-label="Карта за избор на локация"></div>
-              </div>
+                <div class="field-grid mt-3">
+                  <div class="field-grid-full">
+                    <label for="locationName" class="form-label">Локация <span class="required-mark">*</span></label>
+                    <input id="locationName" name="location_name" type="text" class="form-control" maxlength="200" required />
+                  </div>
 
-              <div class="col-12 col-md-6 col-lg-4">
-                <label for="pricePerNight" class="form-label">Цена на нощувка (лв.)</label>
-                <input
-                  id="pricePerNight"
-                  name="price_per_night"
-                  type="number"
-                  class="form-control"
-                  step="0.01"
-                  min="0"
-                />
-              </div>
+                  <div>
+                    <label for="latitude" class="form-label">Географска ширина</label>
+                    <input id="latitude" name="latitude" type="number" class="form-control" step="0.0000001" min="-90" max="90" />
+                  </div>
 
-              <div class="col-12">
-                <h3 class="h6 mb-2">Удобства</h3>
-                <div class="row g-2">
+                  <div>
+                    <label for="longitude" class="form-label">Географска дължина</label>
+                    <input id="longitude" name="longitude" type="number" class="form-control" step="0.0000001" min="-180" max="180" />
+                  </div>
+
+                  <div class="field-grid-full">
+                    <label for="editCampsiteMap" class="form-label mb-2">Локация на картата</label>
+                    <p class="form-helper mb-2">Кликнете върху картата, за да изберете точна позиция.</p>
+                    <div id="editCampsiteMap" class="map-container" aria-label="Карта за избор на локация"></div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="form-section mb-4">
+                <div class="form-section-title">
+                  <h3 class="h5 mb-1">Удобства</h3>
+                  <p class="form-helper mb-0">Отбележете актуалните условия на място.</p>
+                </div>
+
+                <div class="row g-2 mt-1">
                   <div class="col-6 col-md-4 col-lg-2">
                     <div class="form-check">
                       <input id="hasWater" name="has_water" type="checkbox" class="form-check-input" />
@@ -137,25 +160,41 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
 
-              <div class="col-12 col-lg-6">
-                <label for="positiveNotes" class="form-label">Положителни бележки</label>
-                <textarea id="positiveNotes" name="positive_notes" class="form-control" rows="4" maxlength="2000"></textarea>
-              </div>
+              <section class="form-section mb-4">
+                <div class="form-section-title">
+                  <h3 class="h5 mb-1">Снимки</h3>
+                  <p class="form-helper mb-0">Можете да добавите нови снимки към текущата галерия.</p>
+                </div>
 
-              <div class="col-12 col-lg-6">
-                <label for="negativeNotes" class="form-label">Отрицателни бележки</label>
-                <textarea id="negativeNotes" name="negative_notes" class="form-control" rows="4" maxlength="2000"></textarea>
-              </div>
+                <div class="mt-3">
+                  <label for="photos" class="form-label">Добави нови снимки</label>
+                  <input id="photos" name="photos" type="file" class="form-control" accept="image/*" multiple />
+                  <div class="form-text">Можете да качите няколко изображения наведнъж.</div>
+                </div>
+              </section>
 
-              <div class="col-12">
-                <label for="photos" class="form-label">Добави нови снимки</label>
-                <input id="photos" name="photos" type="file" class="form-control" accept="image/*" multiple />
-                <div class="form-text">Можете да качите няколко изображения наведнъж.</div>
-              </div>
+              <section class="form-section mb-3">
+                <div class="form-section-title">
+                  <h3 class="h5 mb-1">Допълнителни бележки</h3>
+                  <p class="form-helper mb-0">Споделете актуални плюсове и минуси за мястото.</p>
+                </div>
 
-              <div class="col-12 d-flex flex-wrap gap-2 pt-2">
+                <div class="field-grid mt-3">
+                  <div>
+                    <label for="positiveNotes" class="form-label">Положителни бележки</label>
+                    <textarea id="positiveNotes" name="positive_notes" class="form-control" rows="4" maxlength="2000"></textarea>
+                  </div>
+
+                  <div>
+                    <label for="negativeNotes" class="form-label">Отрицателни бележки</label>
+                    <textarea id="negativeNotes" name="negative_notes" class="form-control" rows="4" maxlength="2000"></textarea>
+                  </div>
+                </div>
+              </section>
+
+              <div class="form-actions d-flex flex-wrap gap-2 pt-1">
                 <button id="saveCampsiteButton" type="submit" class="btn btn-success">
                   <i class="bi bi-save me-1"></i>Запази промените
                 </button>

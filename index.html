@@ -285,9 +285,12 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title h5" id="loginModalLabel">Вход в профила</h2>
+        <div class="modal-content form-card">
+          <div class="modal-header form-card-header">
+            <div>
+              <h2 class="modal-title h5 mb-1" id="loginModalLabel">Вход в профила</h2>
+              <p class="form-helper mb-0">Използвайте съществуващия си CampAtlas профил.</p>
+            </div>
             <button
               type="button"
               class="btn-close"
@@ -297,8 +300,9 @@
           </div>
           <form id="homeLoginForm" method="post" novalidate>
             <div class="modal-body">
+              <p class="form-helper">Моля, въведете валиден имейл и парола.</p>
               <div class="mb-3">
-                <label for="homeLoginEmail" class="form-label">Имейл</label>
+                <label for="homeLoginEmail" class="form-label">Имейл <span class="required-mark">*</span></label>
                 <input
                   id="homeLoginEmail"
                   name="email"
@@ -310,7 +314,7 @@
               </div>
 
               <div class="mb-3">
-                <label for="homeLoginPassword" class="form-label">Парола</label>
+                <label for="homeLoginPassword" class="form-label">Парола <span class="required-mark">*</span></label>
                 <input
                   id="homeLoginPassword"
                   name="password"
@@ -322,7 +326,7 @@
                 />
               </div>
 
-              <p id="homeLoginMessage" class="small mb-0" role="status" aria-live="polite"></p>
+              <p id="homeLoginMessage" class="small mb-0 mt-2" role="status" aria-live="polite"></p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -343,9 +347,12 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title h5" id="registerModalLabel">Създай профил</h2>
+        <div class="modal-content form-card">
+          <div class="modal-header form-card-header">
+            <div>
+              <h2 class="modal-title h5 mb-1" id="registerModalLabel">Създай профил</h2>
+              <p class="form-helper mb-0">Регистрацията отнема по-малко от минута.</p>
+            </div>
             <button
               type="button"
               class="btn-close"
@@ -355,8 +362,9 @@
           </div>
           <form id="homeRegisterForm" method="post" novalidate>
             <div class="modal-body">
+              <p class="form-helper">Полетата със звездичка са задължителни.</p>
               <div class="mb-3">
-                <label for="homeRegisterFullName" class="form-label">Име и фамилия</label>
+                <label for="homeRegisterFullName" class="form-label">Име и фамилия <span class="required-mark">*</span></label>
                 <input
                   id="homeRegisterFullName"
                   name="full_name"
@@ -369,7 +377,7 @@
               </div>
 
               <div class="mb-3">
-                <label for="homeRegisterEmail" class="form-label">Имейл</label>
+                <label for="homeRegisterEmail" class="form-label">Имейл <span class="required-mark">*</span></label>
                 <input
                   id="homeRegisterEmail"
                   name="email"
@@ -381,7 +389,7 @@
               </div>
 
               <div class="mb-3">
-                <label for="homeRegisterPassword" class="form-label">Парола</label>
+                <label for="homeRegisterPassword" class="form-label">Парола <span class="required-mark">*</span></label>
                 <input
                   id="homeRegisterPassword"
                   name="password"
@@ -394,7 +402,7 @@
               </div>
 
               <div class="mb-3">
-                <label for="homeRegisterPasswordConfirm" class="form-label">Потвърди парола</label>
+                <label for="homeRegisterPasswordConfirm" class="form-label">Потвърди парола <span class="required-mark">*</span></label>
                 <input
                   id="homeRegisterPasswordConfirm"
                   name="password_confirm"
@@ -406,7 +414,7 @@
                 />
               </div>
 
-              <p id="homeRegisterMessage" class="small mb-0" role="status" aria-live="polite"></p>
+              <p id="homeRegisterMessage" class="small mb-0 mt-2" role="status" aria-live="polite"></p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">

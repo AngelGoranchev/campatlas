@@ -6,19 +6,25 @@
     <title>CampAtlas | Регистрация</title>
   </head>
   <body>
-    <main class="container py-5 app-page">
+    <main class="container py-5 app-page form-page">
       <div class="row justify-content-center">
-        <div class="col-12 col-md-9 col-lg-6">
-          <div class="card border-0 shadow-sm">
+        <div class="col-12 col-md-10 col-lg-7 col-xl-6 form-shell">
+          <div class="card auth-card form-card border-0 shadow-sm">
             <div class="card-body p-4 p-md-5">
-              <h1 class="h3 mb-3">Регистрация</h1>
-              <p class="text-muted mb-4">Създайте профил, за да добавяте и пазите любими къмпинги.</p>
+              <div class="form-card-header text-center">
+                <span class="auth-card-icon" aria-hidden="true">
+                  <i class="bi bi-person-plus"></i>
+                </span>
+                <h1 class="h3 mb-2">Създайте своя профил</h1>
+                <p class="text-muted mb-0">Регистрирайте се, за да добавяте и пазите любими къмпинги.</p>
+              </div>
 
               <div id="registerMessage" class="alert d-none" role="alert" aria-live="polite"></div>
 
               <form id="registerForm" class="needs-validation" method="post" novalidate>
+                <p class="form-helper mb-3">Полетата, отбелязани със звездичка, са задължителни.</p>
                 <div class="mb-3">
-                  <label for="registerFullName" class="form-label">Име и фамилия</label>
+                  <label for="registerFullName" class="form-label">Име и фамилия <span class="required-mark">*</span></label>
                   <input
                     id="registerFullName"
                     name="full_name"
@@ -32,7 +38,7 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="registerEmail" class="form-label">Имейл</label>
+                  <label for="registerEmail" class="form-label">Имейл <span class="required-mark">*</span></label>
                   <input
                     id="registerEmail"
                     name="email"
@@ -45,7 +51,7 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="registerPassword" class="form-label">Парола</label>
+                  <label for="registerPassword" class="form-label">Парола <span class="required-mark">*</span></label>
                   <input
                     id="registerPassword"
                     name="password"
@@ -59,7 +65,7 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="registerPasswordConfirm" class="form-label">Потвърдете парола</label>
+                  <label for="registerPasswordConfirm" class="form-label">Потвърдете парола <span class="required-mark">*</span></label>
                   <input
                     id="registerPasswordConfirm"
                     name="password_confirm"
@@ -72,13 +78,17 @@
                   <div class="invalid-feedback">Паролите трябва да съвпадат.</div>
                 </div>
 
-                <button type="submit" class="btn btn-success w-100">
-                  <i class="bi bi-person-plus me-2"></i>Регистрация
-                </button>
+                <div class="form-actions mt-4">
+                  <button type="submit" class="btn btn-success w-100">
+                    <i class="bi bi-person-plus me-2"></i>Регистрация
+                  </button>
+                </div>
               </form>
 
-              <div class="d-flex justify-content-between align-items-center mt-4 gap-2">
-                <a href="/login.html" class="btn btn-outline-success btn-sm">Вече имате профил?</a>
+              <div class="d-flex flex-wrap justify-content-between align-items-center mt-4 gap-2">
+                <a href="/login.html" class="btn btn-outline-success btn-sm">
+                  <i class="bi bi-box-arrow-in-right me-1"></i>Вече имате профил?
+                </a>
                 <a href="/index.html" class="btn btn-link btn-sm text-success px-0">Към началото</a>
               </div>
             </div>
