@@ -98,6 +98,86 @@ a:focus-visible {
   box-shadow: var(--ca-shadow-sm);
 }
 
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: color-mix(in srgb, var(--ca-primary-dark) 70%, #000000);
+}
+
+.icon-badge {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--ca-primary-dark);
+  background: color-mix(in srgb, var(--ca-sage) 70%, #ffffff);
+  border: 1px solid color-mix(in srgb, var(--ca-primary) 32%, var(--ca-border));
+}
+
+.home-hero {
+  border-radius: calc(var(--ca-radius-lg) + 0.2rem);
+  background:
+    radial-gradient(circle at 85% 12%, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 36%),
+    linear-gradient(140deg, #1e5c35 0%, #2f7d4a 54%, #3c9160 100%);
+  box-shadow: var(--ca-shadow-md);
+  color: #ffffff;
+}
+
+.home-hero .lead {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 62ch;
+}
+
+.home-hero-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: var(--ca-radius-lg);
+  box-shadow: 0 10px 24px rgba(18, 43, 28, 0.2);
+  color: var(--ca-text);
+}
+
+.home-highlight-card,
+.home-feature-card,
+.home-step-card {
+  background: var(--ca-card-bg);
+  border: 1px solid var(--ca-border);
+  border-radius: var(--ca-radius-md);
+  box-shadow: var(--ca-shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-highlight-card:hover,
+.home-feature-card:hover,
+.home-step-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--ca-shadow-md);
+}
+
+.home-feature-card .icon-badge {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.home-cta {
+  border-radius: var(--ca-radius-lg);
+  background:
+    linear-gradient(150deg, color-mix(in srgb, var(--ca-sage) 65%, #ffffff), #ffffff 54%),
+    var(--ca-card-bg);
+  border: 1px solid var(--ca-border);
+  box-shadow: var(--ca-shadow-sm);
+}
+
+.home-footer {
+  border-top: 1px solid var(--ca-border);
+  background: color-mix(in srgb, var(--ca-bg-warm) 55%, #ffffff);
+}
+
 .btn-success {
   background-color: var(--ca-primary);
   border-color: var(--ca-primary);
@@ -286,5 +366,24 @@ a:focus-visible {
   .map-container {
     min-height: 280px;
     height: 42vh;
+  }
+
+  .home-hero {
+    border-radius: var(--ca-radius-md);
+  }
+
+  .home-hero .display-5 {
+    font-size: 2rem;
+  }
+
+  .home-hero-card {
+    border-radius: var(--ca-radius-md);
+  }
+
+  .home-highlight-card,
+  .home-feature-card,
+  .home-step-card,
+  .home-cta {
+    border-radius: var(--ca-radius-sm);
   }
 }
