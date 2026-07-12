@@ -42,6 +42,8 @@ function initCampsiteLocationMap(campsite) {
 		return;
 	}
 
+	mapSection.classList.remove('d-none');
+
 	const latitude = Number.parseFloat(String(campsite?.latitude ?? '').trim());
 	const longitude = Number.parseFloat(String(campsite?.longitude ?? '').trim());
 	const hasValidCoordinates = Number.isFinite(latitude)
@@ -195,7 +197,7 @@ export function renderAmenityBadges(campsite) {
 		}
 
 		const badge = document.createElement('span');
-		badge.className = 'badge text-bg-light border';
+		badge.className = 'amenity-badge';
 
 		const icon = document.createElement('i');
 		icon.className = `bi ${amenity.icon} me-1`;
@@ -207,7 +209,7 @@ export function renderAmenityBadges(campsite) {
 
 	if (!container.children.length) {
 		const fallbackBadge = document.createElement('span');
-		fallbackBadge.className = 'badge text-bg-secondary';
+		fallbackBadge.className = 'amenity-badge text-bg-secondary border-0';
 		fallbackBadge.textContent = 'Без отбелязани удобства';
 		container.appendChild(fallbackBadge);
 	}
@@ -227,7 +229,7 @@ export function renderGallery(photos) {
 		col.className = 'col-12';
 
 		const placeholder = document.createElement('div');
-		placeholder.className = 'alert alert-secondary mb-0';
+		placeholder.className = 'catalog-empty-state mb-0';
 		placeholder.textContent = 'Все още няма качени снимки за този къмпинг.';
 		col.appendChild(placeholder);
 
@@ -242,9 +244,7 @@ export function renderGallery(photos) {
 		col.className = 'col-12 col-sm-6 col-lg-4';
 
 		const image = document.createElement('img');
-		image.className = 'img-fluid rounded border w-100';
-		image.style.height = '220px';
-		image.style.objectFit = 'cover';
+		image.className = 'details-gallery-image';
 		image.loading = 'lazy';
 		image.src = photo.public_url || '';
 		image.alt = `Снимка ${index + 1} на къмпинга`;
@@ -282,13 +282,13 @@ export function renderReviews(reviews) {
 
 	reviews.forEach((review) => {
 		const card = document.createElement('article');
-		card.className = 'border rounded p-3 bg-light';
+		card.className = 'review-card';
 
 		const topRow = document.createElement('div');
 		topRow.className = 'd-flex flex-wrap justify-content-between align-items-center gap-2 mb-2';
 
 		const ratingBadge = document.createElement('span');
-		ratingBadge.className = 'badge text-bg-success';
+		ratingBadge.className = 'review-rating-badge';
 		ratingBadge.textContent = `Оценка: ${review.rating}/5`;
 		topRow.appendChild(ratingBadge);
 
