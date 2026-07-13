@@ -101,14 +101,15 @@ async function initRegisterPage() {
 
 		try {
 			const { data, error } = await supabase.auth.signUp({
-                                email,
-                                password,
-                                options: {
-                                        data: {
-                                                full_name: fullName,
-                                        },
-                                },
-                        });
+				email,
+				password,
+				options: {
+					emailRedirectTo: `${window.location.origin}/profile.html`,
+					data: {
+						full_name: fullName,
+					},
+				},
+			});
 
 			if (error) {
 				throw error;
@@ -119,23 +120,20 @@ async function initRegisterPage() {
 				await upsertCurrentProfile({ full_name: fullName });
 			}
 
+			const confirmationMessage =
+				'Регистрацията е създадена успешно. Моля, проверете e-mail адреса си и потвърдете акаунта от получения линк.';
+
 			if (data.session) {
-				setMessage(messageContainer, 'Регистрацията е успешна. Пренасочване към профила...', 'success');
-				window.setTimeout(() => {
-					window.location.replace('/profile.html');
-				}, 700);
+				setMessage(
+					messageContainer,
+					`${confirmationMessage} Вече сте влезли в профила си и можете да продължите към страниците на CampAtlas.`,
+					'success',
+				);
 				return;
 			}
 
-			setMessage(
-				messageContainer,
-				'Регистрацията е успешна. Проверете имейла си за потвърждение, след което влезте в профила си.',
-				'success',
-			);
-
-			window.setTimeout(() => {
-				window.location.replace('/login.html');
-			}, 1800);
+			setMessage(messageContainer, confirmationMessage, 'success');
+			form.reset();
 		} catch (error) {
 			setMessage(messageContainer, mapRegisterErrorMessage(error), 'danger');
 		} finally {

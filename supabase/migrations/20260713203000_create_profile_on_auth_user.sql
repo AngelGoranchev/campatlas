@@ -35,10 +35,7 @@ execute function public.handle_new_user_profile();
 insert into public.profiles (id, full_name)
 select
   u.id,
-  case
-    when u.email = 'tester@softuni.bg' then 'Тестов потребител'
-    else split_part(u.email, '@', 1)
-  end as full_name
+  split_part(u.email, '@', 1) as full_name
 from auth.users u
 left join public.profiles p on p.id = u.id
 where p.id is null

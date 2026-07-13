@@ -36,7 +36,7 @@ function formatPrice(pricePerNight) {
 
 	return new Intl.NumberFormat('bg-BG', {
 		style: 'currency',
-		currency: 'BGN',
+		currency: 'EUR',
 		minimumFractionDigits: 2,
 	}).format(Number(pricePerNight));
 }
@@ -142,7 +142,7 @@ function createCampsiteCard(campsite, photoUrl) {
 	const price = document.createElement('p');
 	price.className = 'fw-semibold mb-3';
 	price.textContent = formattedPrice
-		? `${formattedPrice} / нощувка`
+		? `${formattedPrice} / нощ`
 		: 'Цена: не е посочена';
 	cardBody.appendChild(price);
 

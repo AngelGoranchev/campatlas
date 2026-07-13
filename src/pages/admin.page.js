@@ -33,7 +33,7 @@ function formatPrice(value) {
 
 	return new Intl.NumberFormat('bg-BG', {
 		style: 'currency',
-		currency: 'BGN',
+		currency: 'EUR',
 		minimumFractionDigits: 2,
 	}).format(Number(value));
 }

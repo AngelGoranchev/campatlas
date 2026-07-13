@@ -116,11 +116,11 @@ function formatPrice(pricePerNight) {
 
 	const formatted = new Intl.NumberFormat('bg-BG', {
 		style: 'currency',
-		currency: 'BGN',
+		currency: 'EUR',
 		minimumFractionDigits: 2,
 	}).format(Number(pricePerNight));
 
-	return `${formatted} / нощувка`;
+	return `${formatted} / нощ`;
 }
 
 function formatReviewDate(value) {
