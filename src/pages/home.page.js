@@ -119,6 +119,7 @@ function initHomeRegisterModal() {
 				email,
 				password,
 				options: {
+					emailRedirectTo: `${window.location.origin}/profile.html`,
 					data: {
 						full_name: fullName,
 					},
@@ -130,18 +131,20 @@ function initHomeRegisterModal() {
 				return;
 			}
 
+			const confirmationMessage =
+				'Регистрацията е създадена успешно. Моля, проверете e-mail адреса си и потвърдете акаунта от получения линк.';
+
 			if (data.session) {
-				setAuthMessage(messageBox, 'Успешна регистрация. Пренасочваме ви към профила...', 'success');
-				window.location.assign('/profile.html');
+				setAuthMessage(
+					messageBox,
+					`${confirmationMessage} Вече сте влезли в профила си и можете да продължите в платформата.`,
+					'success',
+				);
 				return;
 			}
 
 			form.reset();
-			setAuthMessage(
-				messageBox,
-				'Профилът е създаден. Проверете имейла си за потвърждение, преди да влезете.',
-				'success'
-			);
+			setAuthMessage(messageBox, confirmationMessage, 'success');
 		} catch {
 			setAuthMessage(messageBox, 'Възникна грешка при регистрация. Моля, опитайте по-късно.', 'error');
 		} finally {

@@ -107,7 +107,7 @@ Then open:
 - `reviews`
 
 ## 13. Security Notes
-- The Supabase `service_role` key is not used in frontend code.
+- Административни ключове не се използват във frontend кода.
 - RLS is enabled and used for authorization.
 - The app uses only the public/anon key in the client.
 - Users cannot set `owner_id` or `review_status` manually from the UI.
