@@ -30,15 +30,15 @@ function getStatusLabel(reviewStatus) {
 
 function getStatusBadgeClass(reviewStatus) {
 	if (reviewStatus === 'pending') {
-		return 'text-bg-warning';
+		return 'status-badge-pending';
 	}
 
 	if (reviewStatus === 'published') {
-		return 'text-bg-success';
+		return 'status-badge-published';
 	}
 
 	if (reviewStatus === 'rejected') {
-		return 'text-bg-danger';
+		return 'status-badge-rejected';
 	}
 
 	return 'text-bg-secondary';
@@ -76,7 +76,7 @@ function formatPrice(value) {
 
 function renderMyCampsiteCard(campsite) {
 	const card = document.createElement('article');
-	card.className = 'border rounded p-3 bg-light';
+	card.className = 'profile-campsite-card';
 
 	const header = document.createElement('div');
 	header.className = 'd-flex flex-wrap justify-content-between align-items-start gap-2 mb-2';
@@ -87,7 +87,7 @@ function renderMyCampsiteCard(campsite) {
 	header.appendChild(title);
 
 	const statusBadge = document.createElement('span');
-	statusBadge.className = `badge ${getStatusBadgeClass(campsite.review_status)}`;
+	statusBadge.className = `status-badge ${getStatusBadgeClass(campsite.review_status)}`;
 	statusBadge.textContent = getStatusLabel(campsite.review_status);
 	header.appendChild(statusBadge);
 
@@ -104,7 +104,7 @@ function renderMyCampsiteCard(campsite) {
 	card.appendChild(createdAt);
 
 	const price = document.createElement('p');
-	price.className = 'mb-3 small';
+	price.className = 'mb-3 small fw-semibold';
 	price.textContent = `Цена: ${formatPrice(campsite.price_per_night)}`;
 	card.appendChild(price);
 

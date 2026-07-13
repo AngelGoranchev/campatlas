@@ -6,14 +6,16 @@
     <title>CampAtlas | Администрация</title>
   </head>
   <body>
-    <main class="container py-5 app-page">
-      <section class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+    <main class="container py-5 app-page form-page">
+      <section class="admin-hero d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4 p-4 p-md-5">
         <div>
-          <h1 class="mb-2">Административен панел</h1>
+          <p class="section-eyebrow mb-2">Администрация</p>
+          <h1 class="mb-2">Админ панел</h1>
           <p class="text-muted mb-0">Преглеждайте чакащи къмпинги и управлявайте техния статус.</p>
         </div>
 
         <div class="d-flex flex-wrap gap-2">
+          <a href="/profile.html" class="btn btn-outline-success">Към профила</a>
           <a href="/campsites.html" class="btn btn-outline-success">Към къмпингите</a>
           <a href="/index.html" class="btn btn-outline-secondary">Към началото</a>
           <button type="button" class="btn btn-danger" data-auth-logout>
@@ -29,14 +31,19 @@
 
       <div id="adminAccessDenied" class="alert alert-warning d-none" role="alert"></div>
       <div id="adminError" class="alert alert-danger d-none" role="alert"></div>
-      <div id="adminEmpty" class="alert alert-secondary d-none" role="status"></div>
+      <div id="pendingCampsitesEmpty" class="alert alert-secondary admin-empty-state d-none" role="status"></div>
 
-      <section id="adminContent" class="card border-0 shadow-sm d-none" aria-live="polite">
+      <section id="adminContent" class="admin-table-card card border-0 shadow-sm d-none" aria-live="polite">
         <div class="card-body p-4">
-          <h2 class="h5 mb-3">Чакащи къмпинги</h2>
+          <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+            <div>
+              <h2 class="h5 mb-1">Чакащи къмпинги</h2>
+              <p class="form-helper mb-0">Одобрете или откажете предложенията след преглед на детайлите.</p>
+            </div>
+          </div>
 
           <div class="table-responsive">
-            <table class="table align-middle">
+            <table id="pendingCampsitesTable" class="table align-middle">
               <thead>
                 <tr>
                   <th scope="col">Заглавие</th>
@@ -46,7 +53,7 @@
                   <th scope="col" class="text-end">Действия</th>
                 </tr>
               </thead>
-              <tbody id="pendingCampsitesBody"></tbody>
+              <tbody id="pendingCampsitesTableBody"></tbody>
             </table>
           </div>
         </div>

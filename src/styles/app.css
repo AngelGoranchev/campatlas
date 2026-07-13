@@ -491,6 +491,53 @@ a:focus-visible {
   font-weight: 700;
 }
 
+.profile-hero {
+  border: 1px solid var(--ca-border);
+  background:
+    radial-gradient(circle at 86% 12%, rgba(47, 125, 74, 0.11), rgba(47, 125, 74, 0) 42%),
+    #ffffff;
+}
+
+.profile-email-box {
+  border: 1px solid color-mix(in srgb, var(--ca-primary) 22%, var(--ca-border));
+  border-radius: var(--ca-radius-sm);
+  background: color-mix(in srgb, #ffffff 84%, var(--ca-sage));
+  padding: 0.85rem 1rem;
+}
+
+.profile-campsite-card {
+  border: 1px solid var(--ca-border);
+  border-radius: var(--ca-radius-md);
+  background: #ffffff;
+  box-shadow: var(--ca-shadow-sm);
+  padding: 1rem;
+}
+
+.admin-hero {
+  border: 1px solid var(--ca-border);
+  border-radius: var(--ca-radius-lg);
+  background:
+    radial-gradient(circle at 84% 14%, rgba(47, 125, 74, 0.12), rgba(47, 125, 74, 0) 44%),
+    #ffffff;
+  box-shadow: var(--ca-shadow-sm);
+}
+
+.admin-table-card {
+  border: 1px solid var(--ca-border);
+}
+
+.admin-empty-state {
+  border: 1px dashed color-mix(in srgb, var(--ca-primary) 35%, var(--ca-border));
+  background: color-mix(in srgb, #ffffff 72%, var(--ca-sage));
+}
+
+.admin-action-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
 .form-label {
   font-weight: 600;
   color: #243329;
@@ -714,5 +761,19 @@ a:focus-visible {
 
   .form-actions .btn {
     width: 100%;
+  }
+
+  .admin-hero {
+    border-radius: var(--ca-radius-md);
+    padding: 1rem !important;
+  }
+
+  .profile-campsite-card {
+    border-radius: var(--ca-radius-sm);
+    padding: 0.9rem;
+  }
+
+  .admin-action-group {
+    justify-content: flex-start;
   }
 }
