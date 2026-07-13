@@ -307,6 +307,10 @@ a:focus-visible {
   object-fit: cover;
 }
 
+.home-showcase-carousel .carousel-item {
+  background: #173624;
+}
+
 .home-showcase-caption {
   left: 1rem;
   right: 1rem;
@@ -669,6 +673,42 @@ a:focus-visible {
   background: var(--ca-primary-dark);
 }
 
+.map-tools {
+  border: 1px dashed color-mix(in srgb, var(--ca-primary) 35%, var(--ca-border));
+  border-radius: var(--ca-radius-sm);
+  background: color-mix(in srgb, #ffffff 86%, var(--ca-sage));
+  padding: 0.8rem;
+}
+
+.map-search-row {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
+  margin-bottom: 0.6rem;
+}
+
+.map-location-message {
+  margin: 0;
+  padding: 0.5rem 0.65rem;
+  border-radius: 0.65rem;
+  border: 1px solid transparent;
+  font-size: 0.88rem;
+  color: var(--ca-text-muted);
+  background: color-mix(in srgb, #ffffff 80%, var(--ca-sage));
+}
+
+.map-location-message.success {
+  color: #0f5132;
+  border-color: #b8d9ca;
+  background: #d1e7dd;
+}
+
+.map-location-message.error {
+  color: #842029;
+  border-color: #e8b8be;
+  background: #f8d7da;
+}
+
 .app-card-image {
   width: 100%;
   border-top-left-radius: inherit;
@@ -687,6 +727,11 @@ a:focus-visible {
 
   .form-actions {
     justify-content: flex-start;
+  }
+
+  .map-search-row {
+    grid-template-columns: 1fr auto;
+    align-items: center;
   }
 }
 
@@ -809,6 +854,15 @@ a:focus-visible {
   }
 
   .form-actions .btn {
+    width: 100%;
+  }
+
+  .map-tools {
+    padding: 0.7rem;
+  }
+
+  .map-search-row .btn,
+  .map-tools .btn {
     width: 100%;
   }
 

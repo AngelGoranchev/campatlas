@@ -32,6 +32,47 @@ function setLocationMarker(map, marker, latitude, longitude, pinIcon) {
 	return L.marker(target, { icon: pinIcon }).addTo(map);
 }
 
+function setMapLocationMessage(messageElement, message, variant = 'success') {
+	if (!messageElement) {
+		return;
+	}
+
+	messageElement.className = `map-location-message ${variant}`;
+	messageElement.textContent = message;
+	messageElement.classList.remove('d-none');
+}
+
+async function searchCoordinatesByQuery(query) {
+	const response = await fetch(
+		`https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q=${encodeURIComponent(query)}`,
+		{
+			headers: {
+				Accept: 'application/json',
+			},
+		},
+	);
+
+	if (!response.ok) {
+		throw new Error('Неуспешно търсене на локация.');
+	}
+
+	const results = await response.json();
+
+	if (!Array.isArray(results) || results.length === 0) {
+		return null;
+	}
+
+	const firstResult = results[0];
+	const latitude = Number.parseFloat(firstResult.lat);
+	const longitude = Number.parseFloat(firstResult.lon);
+
+	if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+		return null;
+	}
+
+	return { latitude, longitude };
+}
+
 function initLocationPickerMap(mapElement, latitudeInput, longitudeInput) {
 	if (!mapElement || !latitudeInput || !longitudeInput) {
 		return null;
@@ -56,6 +97,18 @@ function initLocationPickerMap(mapElement, latitudeInput, longitudeInput) {
 			&& longitude <= 180;
 	};
 
+	const setCoordinates = (latitude, longitude, zoom = null) => {
+		if (!hasValidCoordinates(latitude, longitude)) {
+			return false;
+		}
+
+		latitudeInput.value = latitude.toFixed(7);
+		longitudeInput.value = longitude.toFixed(7);
+		marker = setLocationMarker(map, marker, latitude, longitude, pinIcon);
+		map.setView([latitude, longitude], zoom ?? Math.max(map.getZoom(), SELECTED_LOCATION_ZOOM));
+		return true;
+	};
+
 	const syncMarkerFromInputs = () => {
 		const latitude = parseLatitude();
 		const longitude = parseLongitude();
@@ -64,15 +117,12 @@ function initLocationPickerMap(mapElement, latitudeInput, longitudeInput) {
 			return;
 		}
 
-		marker = setLocationMarker(map, marker, latitude, longitude, pinIcon);
-		map.setView([latitude, longitude], Math.max(map.getZoom(), SELECTED_LOCATION_ZOOM));
+		setCoordinates(latitude, longitude);
 	};
 
 	map.on('click', (event) => {
 		const { lat, lng } = event.latlng;
-		latitudeInput.value = lat.toFixed(7);
-		longitudeInput.value = lng.toFixed(7);
-		marker = setLocationMarker(map, marker, lat, lng, pinIcon);
+		setCoordinates(lat, lng);
 	});
 
 	latitudeInput.addEventListener('change', syncMarkerFromInputs);
@@ -91,6 +141,7 @@ function initLocationPickerMap(mapElement, latitudeInput, longitudeInput) {
 				map.invalidateSize();
 			}, 0);
 		},
+		setCoordinates,
 	};
 }
 
@@ -201,6 +252,10 @@ export async function initCreateCampsitePage() {
 	const latitudeInput = document.getElementById('latitude');
 	const longitudeInput = document.getElementById('longitude');
 	const mapElement = document.getElementById('createCampsiteMap');
+	const mapSearchInput = document.getElementById('createMapSearchInput');
+	const mapSearchButton = document.getElementById('createMapSearchButton');
+	const useMyLocationButton = document.getElementById('createUseMyLocationButton');
+	const mapLocationMessage = document.getElementById('createMapLocationMessage');
 
 	if (!form || !messageContainer || !submitButton) {
 		return;
@@ -208,6 +263,92 @@ export async function initCreateCampsitePage() {
 
 	const mapController = initLocationPickerMap(mapElement, latitudeInput, longitudeInput);
 	mapController?.refreshSize();
+
+	if (mapController && mapSearchInput instanceof HTMLInputElement && mapSearchButton instanceof HTMLButtonElement) {
+		const triggerMapSearch = async () => {
+			const query = mapSearchInput.value.trim();
+
+			if (!query) {
+				setMapLocationMessage(mapLocationMessage, 'Въведете място или адрес за търсене.', 'error');
+				return;
+			}
+
+			mapSearchButton.disabled = true;
+
+			try {
+				const coordinates = await searchCoordinatesByQuery(query);
+
+				if (!coordinates || !mapController.setCoordinates(coordinates.latitude, coordinates.longitude, SELECTED_LOCATION_ZOOM)) {
+					setMapLocationMessage(mapLocationMessage, 'Не беше открита подходяща локация.', 'error');
+					return;
+				}
+
+				setMapLocationMessage(mapLocationMessage, 'Локацията е избрана от търсачката.', 'success');
+			} catch {
+				setMapLocationMessage(mapLocationMessage, 'Неуспешно търсене. Опитайте отново след малко.', 'error');
+			} finally {
+				mapSearchButton.disabled = false;
+			}
+		};
+
+		mapSearchButton.addEventListener('click', triggerMapSearch);
+		mapSearchInput.addEventListener('keydown', (event) => {
+			if (event.key !== 'Enter') {
+				return;
+			}
+
+			event.preventDefault();
+			void triggerMapSearch();
+		});
+	}
+
+	if (mapController && useMyLocationButton instanceof HTMLButtonElement) {
+		useMyLocationButton.addEventListener('click', () => {
+			if (!navigator.geolocation) {
+				setMapLocationMessage(
+					mapLocationMessage,
+					'Браузърът не поддържа автоматично определяне на локация.',
+					'error',
+				);
+				return;
+			}
+
+			useMyLocationButton.disabled = true;
+
+			navigator.geolocation.getCurrentPosition(
+				(position) => {
+					const latitude = position.coords.latitude;
+					const longitude = position.coords.longitude;
+
+					mapController.setCoordinates(latitude, longitude, SELECTED_LOCATION_ZOOM);
+					setMapLocationMessage(mapLocationMessage, 'Локацията е обновена успешно.', 'success');
+					useMyLocationButton.disabled = false;
+				},
+				(error) => {
+					if (error.code === error.PERMISSION_DENIED) {
+						setMapLocationMessage(
+							mapLocationMessage,
+							'Нямате разрешение за достъп до локацията. Разрешете достъпа и опитайте отново.',
+							'error',
+						);
+					} else {
+						setMapLocationMessage(
+							mapLocationMessage,
+							'Не успяхме да определим текущата локация. Моля, опитайте отново.',
+							'error',
+						);
+					}
+
+					useMyLocationButton.disabled = false;
+				},
+				{
+					enableHighAccuracy: true,
+					timeout: 10000,
+					maximumAge: 0,
+				},
+			);
+		});
+	}
 
 	form.addEventListener('submit', async (event) => {
 		event.preventDefault();

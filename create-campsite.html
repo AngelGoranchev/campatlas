@@ -88,6 +88,31 @@
               <div class="field-grid-full">
                 <label for="createCampsiteMap" class="form-label mb-2">Локация на картата</label>
                 <p class="form-helper mb-2">Кликнете върху картата, за да изберете точна позиция.</p>
+                <div class="map-tools mb-2">
+                  <div class="map-search-row">
+                    <input
+                      id="createMapSearchInput"
+                      type="text"
+                      class="form-control"
+                      placeholder="Търси място или адрес"
+                      aria-label="Търсене на локация"
+                    />
+                    <button id="createMapSearchButton" type="button" class="btn btn-outline-success">
+                      <i class="bi bi-search me-1"></i>Търси
+                    </button>
+                  </div>
+                  <div class="d-flex flex-wrap gap-2 align-items-center">
+                    <button id="createUseMyLocationButton" type="button" class="btn btn-outline-success">
+                      <i class="bi bi-crosshair me-1"></i>Използвай моята локация
+                    </button>
+                    <p
+                      id="createMapLocationMessage"
+                      class="map-location-message d-none"
+                      role="status"
+                      aria-live="polite"
+                    ></p>
+                  </div>
+                </div>
                 <div id="createCampsiteMap" class="map-container" aria-label="Карта за избор на локация"></div>
               </div>
             </div>
