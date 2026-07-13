@@ -92,6 +92,7 @@ function renderPendingCampsiteRow(campsite) {
 	const row = document.createElement('tr');
 
 	const titleCell = document.createElement('td');
+	titleCell.className = 'fw-semibold';
 	titleCell.textContent = campsite.title || 'Къмпинг без име';
 	row.appendChild(titleCell);
 
@@ -111,7 +112,7 @@ function renderPendingCampsiteRow(campsite) {
 	actionsCell.className = 'text-end';
 
 	const actionsWrap = document.createElement('div');
-	actionsWrap.className = 'd-flex flex-wrap justify-content-end gap-2';
+	actionsWrap.className = 'admin-action-group';
 
 	const detailsLink = document.createElement('a');
 	detailsLink.className = 'btn btn-outline-secondary btn-sm';
@@ -143,8 +144,8 @@ function renderPendingCampsiteRow(campsite) {
 
 function renderPendingCampsites(campsites) {
 	const contentElement = document.getElementById('adminContent');
-	const emptyElement = document.getElementById('adminEmpty');
-	const bodyElement = document.getElementById('pendingCampsitesBody');
+	const emptyElement = document.getElementById('pendingCampsitesEmpty');
+	const bodyElement = document.getElementById('pendingCampsitesTableBody');
 
 	if (!contentElement || !emptyElement || !bodyElement) {
 		return;
@@ -173,7 +174,7 @@ function renderPendingCampsites(campsites) {
 
 async function loadPendingCampsites() {
 	const contentElement = document.getElementById('adminContent');
-	const emptyElement = document.getElementById('adminEmpty');
+	const emptyElement = document.getElementById('pendingCampsitesEmpty');
 	const errorElement = document.getElementById('adminError');
 
 	if (!contentElement || !emptyElement || !errorElement) {
@@ -204,7 +205,7 @@ export async function initAdminPage() {
 
 	const accessDeniedElement = document.getElementById('adminAccessDenied');
 	const errorElement = document.getElementById('adminError');
-	const emptyElement = document.getElementById('adminEmpty');
+	const emptyElement = document.getElementById('pendingCampsitesEmpty');
 	const contentElement = document.getElementById('adminContent');
 
 	if (!accessDeniedElement || !errorElement || !emptyElement || !contentElement) {

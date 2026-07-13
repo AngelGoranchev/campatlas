@@ -9,12 +9,13 @@
     <main class="container py-5 app-page form-page">
       <div class="row g-4 justify-content-center">
         <div class="col-12 col-xl-9">
-          <div class="card form-card border-0 shadow-sm">
+          <section class="profile-hero card form-card border-0 shadow-sm">
             <div class="card-body p-4 p-md-5">
               <div class="form-card-header d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
                 <div>
+                  <p class="section-eyebrow mb-2">Потребителски профил</p>
                   <h1 class="h3 mb-1">Моят профил</h1>
-                  <p class="text-muted mb-0">Управлявайте основните си данни и публичната информация за профила.</p>
+                  <p class="text-muted mb-0">Управлявайте основните си данни и вашите къмпинг предложения.</p>
                 </div>
                 <button type="button" class="btn btn-outline-danger btn-sm" data-auth-logout>
                   <i class="bi bi-box-arrow-right me-1"></i>Изход
@@ -23,13 +24,13 @@
 
               <div id="profileMessage" class="alert d-none" role="alert" aria-live="polite"></div>
 
-              <div class="form-section mb-4">
+              <div class="profile-email-box mb-4">
                 <label class="form-label text-muted mb-1">Имейл</label>
                 <p id="profileEmail" class="fs-6 fw-semibold mb-0">-</p>
               </div>
 
               <form id="profileForm" class="needs-validation" method="post" novalidate>
-                <div class="form-section">
+                <div class="form-section p-3 p-md-4">
                   <div class="form-section-title">
                     <h2 class="h5 mb-1">Лични данни</h2>
                     <p class="form-helper mb-0">Името се използва при публикуване на съдържание в платформата.</p>
@@ -60,9 +61,9 @@
                 </div>
               </form>
             </div>
-          </div>
+          </section>
 
-          <div class="card form-card border-0 shadow-sm mt-4">
+          <section class="card form-card border-0 shadow-sm mt-4">
             <div class="card-body p-4 p-md-5">
               <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
                 <div>
@@ -88,7 +89,7 @@
 
               <div id="myCampsitesList" class="d-grid gap-3 d-none" aria-live="polite"></div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
     </main>
