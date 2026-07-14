@@ -6,8 +6,41 @@
     <title>CampAtlas | Администрация</title>
   </head>
   <body>
-    <main class="container py-5 app-page form-page">
-      <section class="admin-hero d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4 p-4 p-md-5">
+    <nav class="navbar navbar-expand-lg navbar-dark site-navbar">
+      <div class="container site-navbar-inner">
+        <a class="navbar-brand fw-bold site-brand" href="/index.html">
+          <i class="bi bi-tree-fill me-1"></i> CampAtlas
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#adminMainNav"
+          aria-controls="adminMainNav"
+          aria-expanded="false"
+          aria-label="Отвори меню"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="adminMainNav" class="collapse navbar-collapse">
+          <ul class="navbar-nav me-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item"><a class="nav-link site-nav-link" href="/index.html">Начало</a></li>
+            <li class="nav-item"><a class="nav-link site-nav-link" href="/campsites.html">Къмпинги</a></li>
+            <li class="nav-item"><a class="nav-link site-nav-link" href="/create-campsite.html">Добави къмпинг</a></li>
+            <li class="nav-item"><a class="nav-link site-nav-link" href="/profile.html">Моят профил</a></li>
+          </ul>
+          <ul class="navbar-nav ms-lg-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item"><a href="/login.html" class="btn btn-outline-light btn-sm site-nav-action">Вход</a></li>
+            <li class="nav-item"><a href="/register.html" class="btn btn-light btn-sm text-success fw-semibold site-nav-action">Регистрация</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-5 app-page form-page site-page-shell">
+      <section class="admin-hero site-page-header d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4 p-4 p-md-5">
         <div>
           <p class="section-eyebrow mb-2">Администрация</p>
           <h1 class="mb-2">Админ панел</h1>

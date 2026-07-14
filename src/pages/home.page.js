@@ -1,8 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'leaflet/dist/leaflet.css';
 import '../styles/app.css';
 import { supabase } from '../services/supabaseClient.js';
+import L from 'leaflet';
 
 function setAuthMessage(container, message, state = 'info') {
 	if (!container) {
@@ -153,5 +155,66 @@ function initHomeRegisterModal() {
 	});
 }
 
+function initHomeSearch() {
+	const form = document.getElementById('homeSearchForm');
+	const locationInput = document.getElementById('homeSearchLocation');
+
+	if (!form || !locationInput) {
+		return;
+	}
+
+	form.addEventListener('submit', (event) => {
+		event.preventDefault();
+
+		const locationValue = String(locationInput.value || '').trim();
+		const targetUrl = new URL('/campsites.html', window.location.origin);
+
+		if (locationValue) {
+			targetUrl.searchParams.set('search', locationValue);
+		}
+
+		window.location.assign(`${targetUrl.pathname}${targetUrl.search}`);
+	});
+}
+
+function initHomeBulgariaMap() {
+	const mapContainer = document.getElementById('homeBulgariaMap');
+	if (!mapContainer) {
+		return;
+	}
+
+	const map = L.map(mapContainer, {
+		zoomControl: true,
+		scrollWheelZoom: false,
+		doubleClickZoom: false,
+		dragging: true,
+	});
+
+	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 18,
+		attribution: '&copy; OpenStreetMap contributors',
+	}).addTo(map);
+
+	map.setView([42.7339, 25.4858], 7);
+
+	const points = [
+		{ label: 'Черноморие', coordinates: [42.1401, 27.7002] },
+		{ label: 'Рила', coordinates: [42.133, 23.36] },
+		{ label: 'Родопи', coordinates: [41.62, 24.7] },
+		{ label: 'Стара планина', coordinates: [42.75, 24.95] },
+		{ label: 'Дунав', coordinates: [43.91, 25.96] },
+	];
+
+	points.forEach((point) => {
+		L.marker(point.coordinates).addTo(map).bindPopup(point.label);
+	});
+
+	window.addEventListener('resize', () => {
+		map.invalidateSize();
+	});
+}
+
 initHomeLoginModal();
 initHomeRegisterModal();
+initHomeSearch();
+initHomeBulgariaMap();

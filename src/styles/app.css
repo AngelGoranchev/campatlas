@@ -1,6 +1,9 @@
 :root {
   --ca-primary: #2f7d4a;
   --ca-primary-dark: #1f5f34;
+  --ca-nav-dark: #143927;
+  --ca-accent-warm: #dd8a2d;
+  --ca-accent-warm-dark: #bf7120;
   --ca-sage: #dbe8dd;
   --ca-bg-warm: #f4f6f1;
   --ca-text: #1f2d25;
@@ -42,6 +45,26 @@ a:focus-visible {
 .app-page {
   min-height: calc(100vh - 160px);
   padding-bottom: 1rem;
+}
+
+.site-page-shell {
+  padding-top: 1.2rem;
+}
+
+.site-page-header {
+  border: 1px solid var(--ca-border);
+  border-radius: var(--ca-radius-lg);
+  background:
+    radial-gradient(circle at 86% 12%, rgba(47, 125, 74, 0.12), rgba(47, 125, 74, 0) 44%),
+    #ffffff;
+  box-shadow: var(--ca-shadow-sm);
+}
+
+.site-card {
+  border: 1px solid var(--ca-border);
+  border-radius: var(--ca-radius-md);
+  background: #ffffff;
+  box-shadow: var(--ca-shadow-sm);
 }
 
 .app-page-header {
@@ -368,6 +391,199 @@ a:focus-visible {
 .home-footer {
   border-top: 1px solid var(--ca-border);
   background: color-mix(in srgb, var(--ca-bg-warm) 55%, #ffffff);
+}
+
+.site-navbar {
+  background: linear-gradient(150deg, #17422d, var(--ca-nav-dark));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 22px rgba(10, 27, 18, 0.25);
+}
+
+.site-brand {
+  letter-spacing: 0.01em;
+}
+
+.site-navbar-inner {
+  min-height: 72px;
+}
+
+.site-nav-link {
+  color: rgba(255, 255, 255, 0.88);
+  position: relative;
+}
+
+.site-nav-link:hover,
+.site-nav-link:focus-visible {
+  color: #ffffff;
+}
+
+.site-nav-action {
+  min-width: 104px;
+}
+
+.site-navbar .nav-link {
+  color: rgba(255, 255, 255, 0.88);
+  position: relative;
+}
+
+.site-navbar .nav-link:hover,
+.site-navbar .nav-link:focus-visible {
+  color: #ffffff;
+}
+
+.nav-link-active {
+  color: #ffffff !important;
+}
+
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: -0.25rem;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--ca-accent-warm);
+}
+
+.home-hero-redesign {
+  min-height: min(72vh, 760px);
+  background-image:
+    linear-gradient(92deg, rgba(16, 49, 33, 0.86) 0%, rgba(16, 49, 33, 0.68) 38%, rgba(16, 49, 33, 0.24) 68%, rgba(16, 49, 33, 0.15) 100%),
+    url('https://images.unsplash.com/photo-1445307806294-bff7f67ff225?auto=format&fit=crop&w=2000&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+.home-hero-overlay {
+  width: 100%;
+  height: 100%;
+  padding: 2rem 0;
+}
+
+.hero-search-panel {
+  width: min(100%, 860px);
+  border-radius: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(10, 28, 19, 0.48);
+  backdrop-filter: blur(5px);
+  padding: 0.85rem;
+}
+
+.hero-search-input,
+.hero-search-select {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.hero-primary-action {
+  background: var(--ca-accent-warm);
+  border-color: var(--ca-accent-warm);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.hero-primary-action:hover,
+.hero-primary-action:focus-visible {
+  background: var(--ca-accent-warm-dark);
+  border-color: var(--ca-accent-warm-dark);
+  color: #ffffff;
+}
+
+.hero-secondary-action {
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  color: #14422d;
+  font-weight: 600;
+}
+
+.hero-secondary-action:hover,
+.hero-secondary-action:focus-visible {
+  background: #f2f6f2;
+  color: #113322;
+  border-color: #f2f6f2;
+}
+
+.home-discovery-section {
+  margin-top: -1rem;
+}
+
+.home-map-preview-card {
+  border: 1px solid var(--ca-border);
+  border-radius: var(--ca-radius-lg);
+  background: #ffffff;
+  box-shadow: var(--ca-shadow-sm);
+  padding: 1rem;
+}
+
+#homeBulgariaMap {
+  width: 100%;
+  min-height: 300px;
+  height: clamp(300px, 44vh, 420px);
+  border-radius: 0.95rem;
+  border: 1px solid var(--ca-border);
+  overflow: hidden;
+}
+
+#homeBulgariaMap .leaflet-control-zoom a {
+  color: var(--ca-primary-dark);
+}
+
+.home-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--ca-primary) 24%, var(--ca-border));
+  background: color-mix(in srgb, #ffffff 84%, var(--ca-sage));
+  color: var(--ca-text);
+  border-radius: 999px;
+  padding: 0.32rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.popular-campsites-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.popular-campsite-card {
+  border: 1px solid var(--ca-border);
+  border-radius: var(--ca-radius-md);
+  background: #ffffff;
+  box-shadow: var(--ca-shadow-sm);
+  overflow: hidden;
+}
+
+.popular-campsite-image {
+  width: 100%;
+  height: 176px;
+  object-fit: cover;
+  display: block;
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--ca-primary) 24%, #b8d9ca);
+  background: color-mix(in srgb, #d1e7dd 74%, #ffffff);
+  color: #0f5132;
+  padding: 0.22rem 0.5rem;
+}
+
+.price-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--ca-accent-warm) 38%, #edc190);
+  background: color-mix(in srgb, #fff3e3 78%, #ffffff);
+  color: #8a5318;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.26rem 0.62rem;
 }
 
 .btn-success {
@@ -795,6 +1011,61 @@ a:focus-visible {
     border-radius: var(--ca-radius-sm);
   }
 
+  .site-navbar {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+  }
+
+  .site-navbar-inner {
+    min-height: 64px;
+  }
+
+  .site-page-shell {
+    padding-top: 0.8rem;
+  }
+
+  .site-page-header,
+  .site-card {
+    border-radius: var(--ca-radius-md);
+  }
+
+  .nav-link-active::after {
+    left: 0;
+    right: 0;
+    bottom: -0.12rem;
+  }
+
+  .home-hero-redesign {
+    min-height: 68vh;
+    background-position: center right;
+  }
+
+  .home-hero-overlay {
+    padding-top: 1.35rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .hero-search-panel {
+    padding: 0.75rem;
+  }
+
+  .home-map-preview-card {
+    border-radius: var(--ca-radius-sm);
+  }
+
+  #homeBulgariaMap {
+    min-height: 240px;
+    height: 42vh;
+  }
+
+  .popular-campsite-card {
+    border-radius: var(--ca-radius-sm);
+  }
+
+  .popular-campsite-image {
+    height: 170px;
+  }
+
   .catalog-header {
     border-radius: var(--ca-radius-md);
   }
@@ -878,5 +1149,11 @@ a:focus-visible {
 
   .admin-action-group {
     justify-content: flex-start;
+  }
+}
+
+@media (min-width: 992px) {
+  .popular-campsites-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

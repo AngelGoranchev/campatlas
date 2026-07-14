@@ -6,9 +6,9 @@
     <title>CampAtlas | Начало</title>
   </head>
   <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="/index.html">
+    <nav class="navbar navbar-expand-lg navbar-dark site-navbar">
+      <div class="container site-navbar-inner">
+        <a class="navbar-brand fw-bold site-brand" href="/index.html">
           <i class="bi bi-tree-fill me-1"></i> CampAtlas
         </a>
 
@@ -27,25 +27,25 @@
         <div id="mainNav" class="collapse navbar-collapse">
           <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
             <li class="nav-item">
-              <a class="nav-link active" href="/index.html">Начало</a>
+              <a class="nav-link site-nav-link nav-link-active" href="/index.html">Начало</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/campsites.html">Къмпинги</a>
+              <a class="nav-link site-nav-link" href="/campsites.html">Къмпинги</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/create-campsite.html">Добави къмпинг</a>
+              <a class="nav-link site-nav-link" href="/create-campsite.html">Добави къмпинг</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/profile.html">Моят профил</a>
+              <a class="nav-link site-nav-link" href="/profile.html">Моят профил</a>
             </li>
 
             <li class="nav-item">
               <button
                 type="button"
-                class="btn btn-outline-light btn-sm"
+                class="btn btn-outline-light btn-sm site-nav-action"
                 data-bs-toggle="modal"
                 data-bs-target="#loginModal"
               >
@@ -56,7 +56,7 @@
             <li class="nav-item">
               <button
                 type="button"
-                class="btn btn-light btn-sm text-success fw-semibold"
+                class="btn btn-light btn-sm text-success fw-semibold site-nav-action"
                 data-bs-toggle="modal"
                 data-bs-target="#registerModal"
               >
@@ -68,287 +68,139 @@
       </div>
     </nav>
 
-    <main class="container py-5 app-page">
-      <section class="home-hero p-4 p-lg-5 mb-4">
-        <div class="row g-4 align-items-stretch">
-          <div class="col-12 col-lg-7 d-flex flex-column justify-content-center">
-            <p class="section-eyebrow mb-3">Платформа за къмпинг общността</p>
-            <h1 class="display-5 fw-bold mb-3">Откривай къмпинги, които си струват</h1>
-            <p class="lead mb-4">
-              CampAtlas ти помага да намираш, описваш и споделяш добри места за къмпинг с
-              реални снимки, карта, удобства и отзиви.
-            </p>
-            <div class="d-flex flex-wrap gap-2">
-              <a href="/campsites.html" class="btn btn-light btn-lg">
-                <i class="bi bi-compass me-1"></i>Разгледай къмпинги
-              </a>
-              <a href="/create-campsite.html" class="btn btn-outline-light btn-lg">
-                <i class="bi bi-plus-circle me-1"></i>Добави къмпинг
-              </a>
-            </div>
-          </div>
+    <main class="app-page site-page-shell">
+      <section class="home-hero-redesign">
+        <div class="home-hero-overlay">
+          <div class="container py-5">
+            <div class="row g-4">
+              <div class="col-12 col-xl-8">
+                <h1 class="display-4 fw-bold text-white mb-3">Откривай къмпинги, които си струват</h1>
+                <p class="lead text-white-50 mb-4">
+                  Твоето ръководство за най-добрите места за къмпинг в България и отвъд.
+                </p>
 
-          <div class="col-12 col-lg-5">
-            <article class="home-hero-card h-100 p-4">
-              <h2 class="h5 mb-3">С какво помага CampAtlas</h2>
-              <div class="d-grid gap-3">
-                <div class="d-flex align-items-start gap-3">
-                  <span class="icon-badge">
-                    <i class="bi bi-geo-alt"></i>
-                  </span>
-                  <div>
-                    <h3 class="h6 mb-1">Карта и локация</h3>
-                    <p class="mb-0 app-muted">Избирай координати директно от интерактивната карта.</p>
+                <form id="homeSearchForm" class="hero-search-panel mb-4" novalidate>
+                  <div class="row g-2 align-items-end">
+                    <div class="col-12 col-lg-5">
+                      <label for="homeSearchLocation" class="form-label text-white mb-1">Локация</label>
+                      <input
+                        id="homeSearchLocation"
+                        type="text"
+                        class="form-control hero-search-input"
+                        placeholder="Търси локация"
+                        autocomplete="off"
+                      />
+                    </div>
+                    <div class="col-12 col-lg-4">
+                      <label for="homeSearchType" class="form-label text-white mb-1">Тип</label>
+                      <select id="homeSearchType" class="form-select hero-search-select">
+                        <option value="">Тип: палатка / каравана / кемпер</option>
+                        <option value="палатка">Палатка</option>
+                        <option value="каравана">Каравана</option>
+                        <option value="кемпер">Кемпер</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-lg-3 d-grid">
+                      <button id="homeSearchButton" type="submit" class="btn hero-primary-action">
+                        <i class="bi bi-search me-1"></i>Търси
+                      </button>
+                    </div>
                   </div>
-                </div>
+                </form>
 
-                <div class="d-flex align-items-start gap-3">
-                  <span class="icon-badge">
-                    <i class="bi bi-images"></i>
-                  </span>
-                  <div>
-                    <h3 class="h6 mb-1">Снимки от потребители</h3>
-                    <p class="mb-0 app-muted">Виж реална среда и условия преди да тръгнеш.</p>
-                  </div>
-                </div>
-
-                <div class="d-flex align-items-start gap-3">
-                  <span class="icon-badge">
-                    <i class="bi bi-check2-circle"></i>
-                  </span>
-                  <div>
-                    <h3 class="h6 mb-1">Одобрени къмпинги</h3>
-                    <p class="mb-0 app-muted">Публичният каталог показва само проверени предложения.</p>
-                  </div>
+                <div class="d-flex flex-wrap gap-2">
+                  <a href="/campsites.html" class="btn hero-secondary-action">
+                    <i class="bi bi-compass me-1"></i>Разгледай къмпинги
+                  </a>
+                  <a href="/create-campsite.html" class="btn btn-outline-light">
+                    <i class="bi bi-plus-circle me-1"></i>Добави къмпинг
+                  </a>
                 </div>
               </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="app-section mb-5">
-        <div id="homeShowcaseCarousel" class="carousel slide home-showcase-carousel" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#homeShowcaseCarousel"
-              data-bs-slide-to="0"
-              class="active"
-              aria-current="true"
-              aria-label="Слайд 1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#homeShowcaseCarousel"
-              data-bs-slide-to="1"
-              aria-label="Слайд 2"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#homeShowcaseCarousel"
-              data-bs-slide-to="2"
-              aria-label="Слайд 3"
-            ></button>
-          </div>
-
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img
-                src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=1600&q=80"
-                class="d-block w-100 home-showcase-image"
-                alt="Къмпинг с палатки в зелена природа"
-              />
-              <div class="carousel-caption home-showcase-caption">
-                <h2 class="h5 mb-1">Къмпинг сред природата</h2>
-                <p class="mb-0">Открий спокойни места за палатка далеч от града.</p>
-              </div>
-            </div>
-
-            <div class="carousel-item">
-              <img
-                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80"
-                class="d-block w-100 home-showcase-image"
-                alt="Морски къмпинг при залез"
-              />
-              <div class="carousel-caption home-showcase-caption">
-                <h2 class="h5 mb-1">Морски къмпинг</h2>
-                <p class="mb-0">Планирай нощувки близо до плажа и морския бряг.</p>
-              </div>
-            </div>
-
-            <div class="carousel-item">
-              <img
-                src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80"
-                class="d-block w-100 home-showcase-image"
-                alt="Планински къмпинг с гледка към върхове"
-              />
-              <div class="carousel-caption home-showcase-caption">
-                <h2 class="h5 mb-1">Планински маршрути</h2>
-                <p class="mb-0">Намери къмпинги с удобен достъп до пътеки и панорами.</p>
-              </div>
             </div>
           </div>
-
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#homeShowcaseCarousel"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Предишен</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#homeShowcaseCarousel"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Следващ</span>
-          </button>
         </div>
       </section>
 
-      <section class="app-section mb-5">
-        <div class="row g-3">
-          <div class="col-12 col-md-4">
-            <article class="home-highlight-card h-100 p-3 p-lg-4">
-              <p class="section-eyebrow mb-2">Общност</p>
-              <h2 class="h5 mb-2">Реални къмпинг места</h2>
-              <p class="mb-0 app-muted">Открий места за палатка, каравана или кемпер с полезна информация от общността.</p>
+      <section class="container py-5 home-discovery-section">
+        <div class="row g-4 align-items-start">
+          <div class="col-12 col-lg-6">
+            <article class="home-map-preview-card h-100">
+              <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+                <h2 class="h5 mb-0">Открий следващата дестинация</h2>
+                <span class="badge text-bg-light border">Карта</span>
+              </div>
+
+              <div id="homeBulgariaMap" class="mb-3" aria-label="Карта на България с примерни зони за къмпинг"></div>
+
+              <div class="d-flex flex-wrap gap-2">
+                <span class="home-filter-chip">WiFi</span>
+                <span class="home-filter-chip">Вода</span>
+                <span class="home-filter-chip">Ток</span>
+                <span class="home-filter-chip">Безплатно</span>
+                <span class="home-filter-chip">Домашни любимци</span>
+              </div>
             </article>
           </div>
 
-          <div class="col-12 col-md-4">
-            <article class="home-highlight-card h-100 p-3 p-lg-4">
-              <p class="section-eyebrow mb-2">Профил</p>
-              <h2 class="h5 mb-2">Сигурен потребителски профил</h2>
-              <p class="mb-0 app-muted">Добавяй предложения, управлявай своите къмпинги и запазвай любими места.</p>
-            </article>
-          </div>
+          <div class="col-12 col-lg-6">
+            <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-3">
+              <h2 class="h4 mb-0">Популярни къмпинги</h2>
+              <a href="/campsites.html" class="btn btn-outline-success btn-sm">Виж всички</a>
+            </div>
 
-          <div class="col-12 col-md-4">
-            <article class="home-highlight-card h-100 p-3 p-lg-4">
-              <p class="section-eyebrow mb-2">Карта</p>
-              <h2 class="h5 mb-2">Интерактивна карта</h2>
-              <p class="mb-0 app-muted">Избирай точна локация и разглеждай къмпинги по район.</p>
-            </article>
-          </div>
-        </div>
-      </section>
+            <div class="popular-campsites-grid">
+              <article class="popular-campsite-card app-card-hover">
+                <img
+                  class="popular-campsite-image"
+                  src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=960&q=80"
+                  alt="Къмпинг с палатки край гора"
+                  loading="lazy"
+                />
+                <div class="p-3">
+                  <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                    <h3 class="h6 mb-0">Боров залив</h3>
+                    <span class="verified-badge"><i class="bi bi-patch-check-fill"></i>Потвърден</span>
+                  </div>
+                  <p class="small text-muted mb-2">Рейтинг: 4.8/5</p>
+                  <span class="price-badge">€20 / нощ</span>
+                </div>
+              </article>
 
-      <section class="app-section mb-5">
-        <div class="app-section-header mb-3">
-          <p class="section-eyebrow mb-2">Работен процес</p>
-          <h2 class="h3 mb-0">Как работи</h2>
-        </div>
+              <article class="popular-campsite-card app-card-hover">
+                <img
+                  class="popular-campsite-image"
+                  src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?auto=format&fit=crop&w=960&q=80"
+                  alt="Къмпинг зона за каравани в планината"
+                  loading="lazy"
+                />
+                <div class="p-3">
+                  <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                    <h3 class="h6 mb-0">Панорама рид</h3>
+                    <span class="verified-badge"><i class="bi bi-patch-check-fill"></i>Потвърден</span>
+                  </div>
+                  <p class="small text-muted mb-2">Рейтинг: 4.7/5</p>
+                  <span class="price-badge">€24 / нощ</span>
+                </div>
+              </article>
 
-        <div class="row g-3">
-          <div class="col-12 col-md-4">
-            <article class="home-step-card h-100 p-4">
-              <h3 class="h5 mb-2">1. Създай профил</h3>
-              <p class="mb-0 app-muted">
-                Регистрирай се и управлявай собствените си къмпинг предложения.
-              </p>
-            </article>
-          </div>
-
-          <div class="col-12 col-md-4">
-            <article class="home-step-card h-100 p-4">
-              <h3 class="h5 mb-2">2. Добави къмпинг</h3>
-              <p class="mb-0 app-muted">
-                Опиши мястото, избери локация на картата и качи снимки.
-              </p>
-            </article>
-          </div>
-
-          <div class="col-12 col-md-4">
-            <article class="home-step-card h-100 p-4">
-              <h3 class="h5 mb-2">3. След одобрение става публичен</h3>
-              <p class="mb-0 app-muted">
-                Администратор преглежда предложението и го публикува в каталога.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="app-section mb-5">
-        <div class="app-section-header mb-3">
-          <p class="section-eyebrow mb-2">Основни възможности</p>
-          <h2 class="h3 mb-0">Какво предлага CampAtlas</h2>
-        </div>
-
-        <div class="row g-3">
-          <div class="col-12 col-sm-6 col-lg-4">
-            <article class="home-feature-card h-100 p-4">
-              <span class="icon-badge mb-3"><i class="bi bi-person-badge"></i></span>
-              <h3 class="h5 mb-2">Потребителски профили</h3>
-              <p class="mb-0 app-muted">Управлявай личните си предложения, снимки и активности.</p>
-            </article>
-          </div>
-
-          <div class="col-12 col-sm-6 col-lg-4">
-            <article class="home-feature-card h-100 p-4">
-              <span class="icon-badge mb-3"><i class="bi bi-camera"></i></span>
-              <h3 class="h5 mb-2">Качване на снимки</h3>
-              <p class="mb-0 app-muted">Добавяй визуална информация за атмосферата и условията.</p>
-            </article>
-          </div>
-
-          <div class="col-12 col-sm-6 col-lg-4">
-            <article class="home-feature-card h-100 p-4">
-              <span class="icon-badge mb-3"><i class="bi bi-pin-map"></i></span>
-              <h3 class="h5 mb-2">Карта и координати</h3>
-              <p class="mb-0 app-muted">Точно позициониране на къмпинга чрез карта и географски координати.</p>
-            </article>
-          </div>
-
-          <div class="col-12 col-sm-6 col-lg-4">
-            <article class="home-feature-card h-100 p-4">
-              <span class="icon-badge mb-3"><i class="bi bi-heart"></i></span>
-              <h3 class="h5 mb-2">Любими къмпинги</h3>
-              <p class="mb-0 app-muted">Запази интересните места и се върни към тях по-късно.</p>
-            </article>
-          </div>
-
-          <div class="col-12 col-sm-6 col-lg-4">
-            <article class="home-feature-card h-100 p-4">
-              <span class="icon-badge mb-3"><i class="bi bi-chat-left-text"></i></span>
-              <h3 class="h5 mb-2">Отзиви</h3>
-              <p class="mb-0 app-muted">Чети и оставяй оценки и коментари след реални посещения.</p>
-            </article>
-          </div>
-
-          <div class="col-12 col-sm-6 col-lg-4">
-            <article class="home-feature-card h-100 p-4">
-              <span class="icon-badge mb-3"><i class="bi bi-shield-check"></i></span>
-              <h3 class="h5 mb-2">Админ одобрение</h3>
-              <p class="mb-0 app-muted">Новите предложения се публикуват след проверка от администратор.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="home-cta p-4 p-lg-5 mb-2">
-        <div class="row g-3 align-items-center">
-          <div class="col-12 col-lg-8">
-            <p class="section-eyebrow mb-2">Стани част от общността</p>
-            <h2 class="h3 mb-2">Имаш любимо място за къмпинг?</h2>
-            <p class="mb-0 app-muted">
-              Сподели го в CampAtlas и помогни на други къмпингари да го открият.
-            </p>
-          </div>
-
-          <div class="col-12 col-lg-4 d-flex flex-wrap justify-content-lg-end gap-2">
-            <a href="/create-campsite.html" class="btn btn-success">
-              <i class="bi bi-plus-circle me-1"></i>Добави къмпинг
-            </a>
-            <a href="/campsites.html" class="btn btn-outline-success">
-              <i class="bi bi-map me-1"></i>Виж всички къмпинги
-            </a>
+              <article class="popular-campsite-card app-card-hover">
+                <img
+                  class="popular-campsite-image"
+                  src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=960&q=80"
+                  alt="Къмпинг край езеро"
+                  loading="lazy"
+                />
+                <div class="p-3">
+                  <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                    <h3 class="h6 mb-0">Езерен бряг</h3>
+                    <span class="verified-badge"><i class="bi bi-patch-check-fill"></i>Потвърден</span>
+                  </div>
+                  <p class="small text-muted mb-2">Рейтинг: 4.9/5</p>
+                  <span class="price-badge">€28 / нощ</span>
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </section>
