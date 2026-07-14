@@ -6,7 +6,40 @@
     <title>CampAtlas | Моят профил</title>
   </head>
   <body>
-    <main class="container py-5 app-page form-page">
+    <nav class="navbar navbar-expand-lg navbar-dark site-navbar">
+      <div class="container site-navbar-inner">
+        <a class="navbar-brand fw-bold site-brand" href="/index.html">
+          <i class="bi bi-tree-fill me-1"></i> CampAtlas
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#profileMainNav"
+          aria-controls="profileMainNav"
+          aria-expanded="false"
+          aria-label="Отвори меню"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="profileMainNav" class="collapse navbar-collapse">
+          <ul class="navbar-nav me-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item"><a class="nav-link site-nav-link" href="/index.html">Начало</a></li>
+            <li class="nav-item"><a class="nav-link site-nav-link" href="/campsites.html">Къмпинги</a></li>
+            <li class="nav-item"><a class="nav-link site-nav-link" href="/create-campsite.html">Добави къмпинг</a></li>
+            <li class="nav-item"><a class="nav-link site-nav-link nav-link-active" href="/profile.html">Моят профил</a></li>
+          </ul>
+          <ul class="navbar-nav ms-lg-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item"><a href="/login.html" class="btn btn-outline-light btn-sm site-nav-action">Вход</a></li>
+            <li class="nav-item"><a href="/register.html" class="btn btn-light btn-sm text-success fw-semibold site-nav-action">Регистрация</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-5 app-page form-page site-page-shell">
       <div class="row g-4 justify-content-center">
         <div class="col-12 col-xl-9">
           <section class="profile-hero card form-card border-0 shadow-sm">
